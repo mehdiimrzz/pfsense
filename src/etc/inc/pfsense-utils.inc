@@ -3132,6 +3132,7 @@ function get_locale_list() {
 		"pt_BR" => gettext("Portuguese (Brazil)"),
 		"ru" => gettext("Russian"),
 		"es" => gettext("Spanish"),
+		"fa" => gettext("فارسی"),
 		"es_AR" => gettext("Spanish (Argentina)"),
 	);
 
