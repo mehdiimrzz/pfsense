@@ -391,7 +391,7 @@ tr.disabled a {
 
 .header .context-links {
     position: absolute;
-    right: 15px;
+    left: 0px;
     top: 15px;
 }
 
@@ -653,7 +653,7 @@ footer a {
     font-size: 15px;
     vertical-align: middle;
     color: white;
-    padding-right: 22px;
+    padding-left: 22px;
     padding-bottom: 17px;
     margin-top: -0.125em;
     width: 14px;
@@ -690,7 +690,7 @@ footer a {
 .widget-heading-icon
 {
     display: block;
-    float: right;
+    float: left;
 }
 
 .widget-heading-icon .fa {

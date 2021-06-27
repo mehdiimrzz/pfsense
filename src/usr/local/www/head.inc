@@ -492,7 +492,6 @@ if (are_notices_pending()) {
 					['name' => 'Interfaces',     'menu' => $interfaces_menu,  'href' => null],
 					['name' => 'Firewall',	     'menu' => $firewall_menu,	  'href' => null],
 					['name' => 'Services',	     'menu' => $services_menu,	  'href' => null],
-					['name' => 'VPN',		     'menu' => $vpn_menu,		  'href' => null],
 					['name' => 'Status',	     'menu' => $status_menu,	  'href' => null],
 					['name' => 'Diagnostics',    'menu' => $diagnostics_menu, 'href' => null],
                     ['name' => $help_menu_title, 'menu' => $help_menu,		  'href' => '_blank']
