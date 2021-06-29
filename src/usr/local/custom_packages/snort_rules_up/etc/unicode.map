@@ -1,104 +1,1090 @@
-# Windows Version: 5.00.2195
-# OEM codepage: 437
-# ACP codepage: 1252
+ommand:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			<dev:type>
+				<maml:name>string</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>PutType</maml:name>
+			<maml:description>
+				<maml:para>Indicates whether the WMI instance should be created or updated. Valid values are:
 
-# INSTALLED CODEPAGES
-10000 (MAC - Roman)
+UpdateOnly: Updates an existing WMI instance.
+CreateOnly: Creates a new WMI instance.
+UpdateOrCreate: Updates the WMI instance if it exists or creates a new instance if an instance does not exist.
+</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">PutType</command:parameterValue>
+			<dev:type>
+				<maml:name>PutType</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>ThrottleLimit</maml:name>
+			<maml:description>
+				<maml:para>Allows the user to specify a throttling value for the number of WMI operations that can be executed simultaneously. This parameter is used together with the AsJob parameter. The throttle limit applies only to the current command, not to the session or to the computer.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">int</command:parameterValue>
+			<dev:type>
+				<maml:name>int</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+   			 <maml:name>Confirm</maml:name>
+    			<maml:description>
+				<maml:para>Prompts you for confirmation before executing the command.</maml:para>
+    			</maml:description>
+    			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>	
+				<dev:type>
+  				<maml:name>SwitchParameter</maml:name> 
+					<maml:uri /> 
+					</dev:type>
+ 			<dev:defaultValue /> 
+			</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+   			 <maml:name>WhatIf</maml:name>
+    			<maml:description>
+				<maml:para>Describes what would happen if you executed the command without actually executing the command.</maml:para>
+    			</maml:description>
+    			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>	
+				<dev:type>
+  				<maml:name>SwitchParameter</maml:name> 
+					<maml:uri /> 
+					</dev:type>
+ 			<dev:defaultValue /> 
+			</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name>None</maml:name>
+				<maml:uri/>
+				<maml:description />
+			</dev:type>
+			<maml:description>
+				<maml:para>
+					<!-- description  -->
+					This cmdlet does not accept input.
+				</maml:para>
+			</maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name>None</maml:name>
+				<maml:uri />
+				<maml:description />
+			</dev:type>   
+			<maml:description>
+				<maml:para>
+					<!-- description  -->
+					This cmdlet does not generate output.
+				</maml:para>
+			</maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<!-- Error section-->
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+		<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+Set-WMIInstance -class Win32_WMISetting -argument @{LoggingLevel=2}
+
+__GENUS                        : 2
+__CLASS                        : Win32_WMISetting
+__SUPERCLASS                   : CIM_Setting
+__DYNASTY                      : CIM_Setting
+__RELPATH                      : Win32_WMISetting=@
+__PROPERTY_COUNT               : 27
+__DERIVATION                   : {CIM_Setting}
+__SERVER                       : SYSTEM01
+__NAMESPACE                    : root\cimv2
+__PATH                         : \\SYSTEM01\root\cimv2:Win32_WMISetting=@
+ASPScriptDefaultNamespace      : \\root\cimv2
+ASPScriptEnabled               : False
+AutorecoverMofs                : {%windir%\system32\wbem\cimwin32.mof, %windir%\system32\wbem\ncprov.mof, %windir%\syst
+                                 em32\wbem\wmipcima.mof, %windir%\system32\wbem\secrcw32.mof...}
+AutoStartWin9X                 :
+BackupInterval                 :
+BackupLastTime                 :
+BuildVersion                   : 6001.18000
+Caption                        :
+DatabaseDirectory              : C:\Windows\system32\wbem\repository
+DatabaseMaxSize                :
+Description                    :
+EnableAnonWin9xConnections     :
+EnableEvents                   : False
+EnableStartupHeapPreallocation : False
+HighThresholdOnClientObjects   :
+HighThresholdOnEvents          : 20000000
+InstallationDirectory          : C:\Windows\system32\wbem
+LastStartupHeapPreallocation   :
+LoggingDirectory               : C:\Windows\system32\wbem\Logs\
+LoggingLevel                   : 2
+LowThresholdOnClientObjects    :
+LowThresholdOnEvents           : 10000000
+MaxLogFileSize                 : 65536
+MaxWaitOnClientObjects         :
+MaxWaitOnEvents                : 2000
+MofSelfInstallDirectory        :
+SettingID                      :
+                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>This command sets the WMI logging level to 2. The command passes the property to be set and the value (together considered a value pair) in the argument parameter. The parameter takes a hash table that is defined by the @{property = value} construction. Theclass information that is returned reflects the new value.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+set-wmiinstance -class win32_environment -argument @{Name=&quot;testvar&quot;;VariableValue=&quot;testvalue&quot;;UserName=&quot;&lt;SYSTEM&gt;&quot;}
+
+__GENUS          : 2
+__CLASS          : Win32_Environment
+__SUPERCLASS     : CIM_SystemResource
+__DYNASTY        : CIM_ManagedSystemElement
+__RELPATH        : Win32_Environment.Name=&quot;testvar&quot;,UserName=&quot;&lt;SYSTEM&gt;&quot;
+__PROPERTY_COUNT : 8
+__DERIVATION     : {CIM_SystemResource, CIM_LogicalElement, CIM_ManagedSystemElement}
+__SERVER         : SYSTEM01
+__NAMESPACE      : root\cimv2
+__PATH           : \\SYSTEM01\root\cimv2:Win32_Environment.Name=&quot;testvar&quot;,UserName=&quot;&lt;SYSTEM&gt;&quot;
+Caption          : &lt;SYSTEM&gt;\testvar
+Description      : &lt;SYSTEM&gt;\testvar
+InstallDate      :
+Name             : testvar
+Status           : OK
+SystemVariable   : True
+UserName         : &lt;SYSTEM&gt;
+VariableValue    : testvalue                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>This command creates the testvar environment variable that has  the value &quot;testvalue&quot;. It does this by creating a new instance of the Win32_Environment WMI class. Note that this operation requires appropriate credentials and that you may need to restart Windows PowerShell to see the new environment variable.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 3 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+Set-WMIInstance -class Win32_WMISetting -argument @{LoggingLevel=2} -computername system01, system02, system03
+
+__GENUS                        : 2
+__CLASS                        : Win32_WMISetting
+__SUPERCLASS                   : CIM_Setting
+__DYNASTY                      : CIM_Setting
+__RELPATH                      : Win32_WMISetting=@
+__PROPERTY_COUNT               : 27
+__DERIVATION                   : {CIM_Setting}
+__SERVER                       : SYSTEM01
+__NAMESPACE                    : root\cimv2
+__PATH                         : \\SYSTEM01\root\cimv2:Win32_WMISetting=@
+ASPScriptDefaultNamespace      : \\root\cimv2
+ASPScriptEnabled               : False
+AutorecoverMofs                : {%windir%\system32\wbem\cimwin32.mof, %windir%\system32\wbem\ncprov.mof, %windir%\syst
+                                 em32\wbem\wmipcima.mof, %windir%\system32\wbem\secrcw32.mof...}
+AutoStartWin9X                 :
+BackupInterval                 :
+BackupLastTime                 :
+BuildVersion                   : 6001.18000
+Caption                        :
+DatabaseDirectory              : C:\Windows\system32\wbem\repository
+DatabaseMaxSize                :
+Description                    :
+EnableAnonWin9xConnections     :
+EnableEvents                   : False
+EnableStartupHeapPreallocation : False
+HighThresholdOnClientObjects   :
+HighThresholdOnEvents          : 20000000
+InstallationDirectory          : C:\Windows\system32\wbem
+LastStartupHeapPreallocation   :
+LoggingDirectory               : C:\Windows\system32\wbem\Logs\
+LoggingLevel                   : 2
+LowThresholdOnClientObjects    :
+LowThresholdOnEvents           : 10000000
+MaxLogFileSize                 : 65536
+MaxWaitOnClientObjects         :
+MaxWaitOnEvents                : 2000
+MofSelfInstallDirectory        :
+SettingID                      :
+
+...                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>This command sets the WMI logging level to 2. The command passes the property to be set and the value (together considered a value pair) in the argument parameter. The parameter takes a hash table that is defined by the @{property = value} construction. The returned class information reflects the new value.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Online version:</maml:linkText>
+			<maml:uri>http://go.microsoft.com/fwlink/?LinkID=113402</maml:uri>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Get-WmiObject</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Invoke-WmiMethod</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Remove-WmiObject</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Get-WSManInstance</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Invoke-WSManAction</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>New-WSManInstance</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Remove-WSManInstance</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
 
 
-10079 (MAC - Icelandic)
+<!-- v 1.1.0.9 -->
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   Show-EventLog
+		</command:name>
+		<maml:description>
+			<maml:para>Displays the event logs of the local or a remote computer in Event Viewer.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>Show</command:verb>
+		<command:noun>EventLog</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>The Show-EventLog cmdlet opens Event Viewer on the local computer and displays in it all of the classic event logs on the local computer or a remote computer.  
+
+To open Event Viewer on Windows Vista and later versions of Windows, the current user must be a member of the Administrators group on the local computer. 
+
+The cmdlets that contain the EventLog noun (the EventLog cmdlets) work only on classic event logs. To get events from logs that use the Windows Event Log technology in Windows Vista and later versions of Windows, use Get-WinEvent.</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Show-EventLog</maml:name>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1">
+				<maml:name>ComputerName</maml:name>
+				<maml:description>
+					<maml:para>Specifies a remote computer. Show-EventLog displays the event logs from the specified computer in Event Viewer on the local computer. The default is the local computer.
+
+Type the NetBIOS name, an Internet Protocol (IP) address, or a fully qualified domain name of a remote computer. 
+
+This parameter does not rely on Windows PowerShell remoting. You can use the ComputerName parameter of Get-EventLog even if your computer is not configured to run remote commands.
+</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Cmdlet parameter section  -->
+	<command:parameters>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1">
+			<maml:name>ComputerName</maml:name>
+			<maml:description>
+				<maml:para>Specifies a remote computer. Show-EventLog displays the event logs from the specified computer in Event Viewer on the local computer. The default is the local computer.
+
+Type the NetBIOS name, an Internet Protocol (IP) address, or a fully qualified domain name of a remote computer. 
+
+This parameter does not rely on Windows PowerShell remoting. You can use the ComputerName parameter of Get-EventLog even if your computer is not configured to run remote commands.
+</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+			<dev:type>
+				<maml:name>string</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>.</dev:defaultValue>
+		</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name>None</maml:name>
+				<maml:uri/>
+				<maml:description />
+			</dev:type>
+			<maml:description>
+				<maml:para>
+					<!-- description  -->
+					You cannot pipe input to this cmdlet.
+				</maml:para>
+			</maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name>None</maml:name>
+				<maml:uri />
+				<maml:description />
+			</dev:type>   
+			<maml:description>
+				<maml:para>
+					<!-- description  -->
+					This cmdlet does not generate any output.
+				</maml:para>
+			</maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<!-- Error section-->
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+		<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          The Windows PowerShell command prompt returns as soon as Event Viewer opens. You can work in the current session while Event Viewer is open.
+
+Because this cmdlet requires a user interface, it does not work on Server Core installations of Windows Server.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+show-eventlog                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>This command opens Event Viewer and displays in it the classic event logs on the local computer.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+show-eventlog -computername Server01                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>This command opens Event Viewer and displays in it the classic event logs on the Server01 computer.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<!-- Link section  -->
+	<maml:relatedLinks>
+		<maml:navigationLink>
+			<maml:linkText>Online version:</maml:linkText>
+			<maml:uri>http://go.microsoft.com/fwlink/?LinkID=135257</maml:uri>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Clear-EventLog</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Get-EventLog</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Limit-EventLog</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>New-EventLog</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Remove-EventLog</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Write-EventLog</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+		<maml:navigationLink>
+			<maml:linkText>Get-WinEvent</maml:linkText>
+			<maml:uri/>
+		</maml:navigationLink>
+	</maml:relatedLinks>
+</command:command>
 
 
-1250  (ANSI - Central Europe)
-00a1:21 00a2:63 00a3:4c 00a5:59 00aa:61 00b2:32 00b3:33 00b9:31 00ba:6f 00bc:31 00bd:31 00be:33 00c0:41 00c3:41 00c5:41 00c6:41 00c8:45 00ca:45 00cc:49 00cf:49 00d1:4e 00d2:4f 00d5:4f 00d8:4f 00d9:55 00db:55 00e0:61 00e3:61 00e5:61 00e6:61 00e8:65 00ea:65 00ec:69 00ef:69 00f1:6e 00f2:6f 00f5:6f 00f8:6f 00f9:75 00fb:75 00ff:79 0100:41 0101:61 0108:43 0109:63 010a:43 010b:63 0112:45 0113:65 0114:45 0115:65 0116:45 0117:65 011c:47 011d:67 011e:47 011f:67 0120:47 0121:67 0122:47 0123:67 0124:48 0125:68 0126:48 0127:68 0128:49 0129:69 012a:49 012b:69 012c:49 012d:69 012e:49 012f:69 0130:49 0131:69 0134:4a 0135:6a 0136:4b 0137:6b 013b:4c 013c:6c 0145:4e 0146:6e 014c:4f 014d:6f 014e:4f 014f:6f 0152:4f 0153:6f 0156:52 0157:72 015c:53 015d:73 0166:54 0167:74 0168:55 0169:75 016a:55 016b:75 016c:55 016d:75 0172:55 0173:75 0174:57 0175:77 0176:59 0177:79 0178:59 0180:62 0191:46 0192:66 0197:49 019a:6c 019f:4f 01a0:4f 01a1:6f 01ab:74 01ae:54 01af:55 01b0:75 01b6:7a 01c0:7c 01c3:21 01cd:41 01ce:61 01cf:49 01d0:69 01d1:4f 01d2:6f 01d3:55 01d4:75 01d5:55 01d6:75 01d7:55 01d8:75 01d9:55 01da:75 01db:55 01dc:75 01de:41 01df:61 01e4:47 01e5:67 01e6:47 01e7:67 01e8:4b 01e9:6b 01ea:4f 01eb:6f 01ec:4f 01ed:6f 01f0:6a 0261:67 02b9:27 02ba:22 02bc:27 02c4:5e 02c6:5e 02c8:27 02cb:60 02cd:5f 02dc:7e 0300:60 0302:5e 0303:7e 030e:22 0331:5f 0332:5f 037e:3b 04bb:68 0589:3a 066a:25 2000:20 2001:20 2002:20 2003:20 2004:20 2005:20 2006:20 2010:2d 2011:2d 2032:27 2035:60 203c:21 2044:2f 2074:34 2075:35 2076:36 2077:37 2078:38 2080:30 2081:31 2082:32 2083:33 2084:34 2085:35 2086:36 2087:37 2088:38 2089:39 2102:43 2107:45 210a:67 210b:48 210c:48 210d:48 210e:68 2110:49 2111:49 2112:4c 2113:6c 2115:4e 2118:50 2119:50 211a:51 211b:52 211c:52 211d:52 2124:5a 2128:5a 212a:4b 212c:42 212d:43 212e:65 212f:65 2130:45 2131:46 2133:4d 2134:6f 2191:5e 2194:2d 2195:7c 21a8:7c 2212:2d 2215:2f 2216:5c 2217:2a 221f:4c 2223:7c 2236:3a 223c:7e 2303:5e 2329:3c 232a:3e 2502:2d 250c:2d 2514:4c 2518:2d 251c:2b 2524:2b 252c:54 2534:2b 253c:2b 2550:3d 2554:2d 255a:4c 255d:2d 2566:54 256c:2b 2580:2d 2584:2d 2588:2d 2591:2d 2592:2d 2593:2d 25ac:2d 25b2:5e 25ba:3e 25c4:3c 25cb:30 25d9:30 263c:30 2640:2b 2642:3e 266a:64 266b:64 2758:7c 3000:20 3008:3c 3009:3e 301a:5b 301b:5d ff01:21 ff02:22 ff03:23 ff04:24 ff05:25 ff06:26 ff07:27 ff08:28 ff09:29 ff0a:2a ff0b:2b ff0c:2c ff0d:2d ff0e:2e ff0f:2f ff10:30 ff11:31 ff12:32 ff13:33 ff14:34 ff15:35 ff16:36 ff17:37 ff18:38 ff19:39 ff1a:3a ff1b:3b ff1c:3c ff1d:3d ff1e:3e ff20:40 ff21:41 ff22:42 ff23:43 ff24:44 ff25:45 ff26:46 ff27:47 ff28:48 ff29:49 ff2a:4a ff2b:4b ff2c:4c ff2d:4d ff2e:4e ff2f:4f ff30:50 ff31:51 ff32:52 ff33:53 ff34:54 ff35:55 ff36:56 ff37:57 ff38:58 ff39:59 ff3a:5a ff3b:5b ff3c:5c ff3d:5d ff3e:5e ff3f:5f ff40:60 ff41:61 ff42:62 ff43:63 ff44:64 ff45:65 ff46:66 ff47:67 ff48:68 ff49:69 ff4a:6a ff4b:6b ff4c:6c ff4d:6d ff4e:6e ff4f:6f ff50:70 ff51:71 ff52:72 ff53:73 ff54:74 ff55:75 ff56:76 ff57:77 ff58:78 ff59:79 ff5a:7a ff5b:7b ff5c:7c ff5d:7d ff5e:7e 
+<!-- v 1.1.0.9 -->
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+	<command:details>
+		<command:name>
+                   Split-Path
+		</command:name>
+		<maml:description>
+			<maml:para>Returns the specified part of a path.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para></maml:para>
+		</maml:copyright>
+		<command:verb>Split</command:verb>
+		<command:noun>Path</command:noun>
+		<dev:version></dev:version>
+	</command:details>
+	<maml:description>
+		<maml:para>The Split-Path cmdlet returns only the specified part of a path, such as the parent directory, a child directory, or a file name. It also can display the items that are referenced by the split path and tell whether the path is relative or absolute.
 
-1251  (ANSI - Cyrillic)
-00c0:41 00c1:41 00c2:41 00c3:41 00c4:41 00c5:41 00c7:43 00c8:45 00c9:45 00ca:45 00cb:45 00cc:49 00cd:49 00ce:49 00cf:49 00d1:4e 00d2:4f 00d3:4f 00d4:4f 00d5:4f 00d6:4f 00d8:4f 00d9:55 00da:55 00db:55 00dc:55 00dd:59 00e0:61 00e1:61 00e2:61 00e3:61 00e4:61 00e5:61 00e7:63 00e8:65 00e9:65 00ea:65 00eb:65 00ec:69 00ed:69 00ee:69 00ef:69 00f1:6e 00f2:6f 00f3:6f 00f4:6f 00f5:6f 00f6:6f 00f8:6f 00f9:75 00fa:75 00fb:75 00fc:75 00fd:79 00ff:79 0100:41 0101:61 0102:41 0103:61 0104:41 0105:61 0106:43 0107:63 0108:43 0109:63 010a:43 010b:63 010c:43 010d:63 010e:44 010f:64 0110:44 0111:64 0112:45 0113:65 0114:45 0115:65 0116:45 0117:65 0118:45 0119:65 011a:45 011b:65 011c:47 011d:67 011e:47 011f:67 0120:47 0121:67 0122:47 0123:67 0124:48 0125:68 0126:48 0127:68 0128:49 0129:69 012a:49 012b:69 012c:49 012d:69 012e:49 012f:69 0130:49 0134:4a 0135:6a 0136:4b 0137:6b 0139:4c 013a:6c 013b:4c 013c:6c 013d:4c 013e:6c 0141:4c 0142:6c 0143:4e 0144:6e 0145:4e 0146:6e 0147:4e 0148:6e 014c:4f 014d:6f 014e:4f 014f:6f 0150:4f 0151:6f 0154:52 0155:72 0156:52 0157:72 0158:52 0159:72 015a:53 015b:73 015c:53 015d:73 015e:53 015f:73 0160:53 0161:73 0162:54 0163:74 0164:54 0165:74 0166:54 0167:74 0168:55 0169:75 016a:55 016b:75 016c:55 016d:75 016e:55 016f:75 0170:55 0171:75 0172:55 0173:75 0174:57 0175:77 0176:59 0177:79 0178:59 0179:5a 017b:5a 017c:7a 017d:5a 017e:7a 0180:62 0197:49 019a:6c 019f:4f 01a0:4f 01a1:6f 01ab:74 01ae:54 01af:55 01b0:75 01cd:41 01ce:61 01cf:49 01d0:69 01d1:4f 01d2:6f 01d3:55 01d4:75 01d5:55 01d6:75 01d7:55 01d8:75 01d9:55 01da:75 01db:55 01dc:75 01de:41 01df:61 01e4:47 01e5:67 01e6:47 01e7:67 01e8:4b 01e9:6b 01ea:4f 01eb:6f 01ec:4f 01ed:6f 01f0:6a 203c:21 2190:3c 2191:5e 2192:3e 2193:76 2194:2d 221a:76 221f:4c 2500:2d 250c:2d 2514:4c 2518:2d 251c:2b 2524:2b 252c:54 2534:2b 253c:2b 2550:3d 2552:2d 2558:4c 2559:4c 255a:4c 255b:2d 255c:2d 255d:2d 2564:54 2565:54 2566:54 256a:2b 256b:2b 256c:2b 2580:2d 2584:2d 2588:2d 2591:2d 2592:2d 2593:2d 25ac:2d 25b2:5e 25ba:3e 25c4:3c 25cb:30 25d9:30 263a:4f 263b:4f 263c:30 2640:2b 2642:3e 266a:64 266b:64 ff01:21 ff02:22 ff03:23 ff04:24 ff05:25 ff06:26 ff07:27 ff08:28 ff09:29 ff0a:2a ff0b:2b ff0c:2c ff0d:2d ff0e:2e ff0f:2f ff10:30 ff11:31 ff12:32 ff13:33 ff14:34 ff15:35 ff16:36 ff17:37 ff18:38 ff19:39 ff1a:3a ff1b:3b ff1c:3c ff1d:3d ff1e:3e ff20:40 ff21:41 ff22:42 ff23:43 ff24:44 ff25:45 ff26:46 ff27:47 ff28:48 ff29:49 ff2a:4a ff2b:4b ff2c:4c ff2d:4d ff2e:4e ff2f:4f ff30:50 ff31:51 ff32:52 ff33:53 ff34:54 ff35:55 ff36:56 ff37:57 ff38:58 ff39:59 ff3a:5a ff3b:5b ff3c:5c ff3d:5d ff3e:5e ff3f:5f ff40:60 ff41:61 ff42:62 ff43:63 ff44:64 ff45:65 ff46:66 ff47:67 ff48:68 ff49:69 ff4a:6a ff4b:6b ff4c:6c ff4d:6d ff4e:6e ff4f:6f ff50:70 ff51:71 ff52:72 ff53:73 ff54:74 ff55:75 ff56:76 ff57:77 ff58:78 ff59:79 ff5a:7a ff5b:7b ff5c:7c ff5d:7d ff5e:7e 
+You can use this cmdlet to display or submit only a selected part of a path.</maml:para>
+	</maml:description>
+	<!-- Cmdlet syntax section-->
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Split-Path</maml:name>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>IsAbsolute</maml:name>
+				<maml:description>
+					<maml:para>Returns TRUE if the path is absolute and FALSE if it is relative. An absolute path has a length greater than zero and does not use a dot ( . ) to indicate the current path.</maml:para>
+				</maml:description>
+			</command:parameter>
+			<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
+				<maml:name>Path</maml:name>
+				<maml:description>
+					<maml:para>Specifies the paths to be split. Wildcards are permitted. If the path includes spaces, enclose it in quotation marks. You can also pipe a path to Split-Path.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+				<maml:name>Credential</maml:name>
+				<maml:description>
+					<maml:para>Specifies a user account that has permission to perform this action. The default is the current user. 
 
-1252  (ANSI - Latin I)
-0100:41 0101:61 0102:41 0103:61 0104:41 0105:61 0106:43 0107:63 0108:43 0109:63 010a:43 010b:63 010c:43 010d:63 010e:44 010f:64 0111:64 0112:45 0113:65 0114:45 0115:65 0116:45 0117:65 0118:45 0119:65 011a:45 011b:65 011c:47 011d:67 011e:47 011f:67 0120:47 0121:67 0122:47 0123:67 0124:48 0125:68 0126:48 0127:68 0128:49 0129:69 012a:49 012b:69 012c:49 012d:69 012e:49 012f:69 0130:49 0131:69 0134:4a 0135:6a 0136:4b 0137:6b 0139:4c 013a:6c 013b:4c 013c:6c 013d:4c 013e:6c 0141:4c 0142:6c 0143:4e 0144:6e 0145:4e 0146:6e 0147:4e 0148:6e 014c:4f 014d:6f 014e:4f 014f:6f 0150:4f 0151:6f 0154:52 0155:72 0156:52 0157:72 0158:52 0159:72 015a:53 015b:73 015c:53 015d:73 015e:53 015f:73 0162:54 0163:74 0164:54 0165:74 0166:54 0167:74 0168:55 0169:75 016a:55 016b:75 016c:55 016d:75 016e:55 016f:75 0170:55 0171:75 0172:55 0173:75 0174:57 0175:77 0176:59 0177:79 0179:5a 017b:5a 017c:7a 0180:62 0197:49 019a:6c 019f:4f 01a0:4f 01a1:6f 01ab:74 01ae:54 01af:55 01b0:75 01b6:7a 01c0:7c 01c3:21 01cd:41 01ce:61 01cf:49 01d0:69 01d1:4f 01d2:6f 01d3:55 01d4:75 01d5:55 01d6:75 01d7:55 01d8:75 01d9:55 01da:75 01db:55 01dc:75 01de:41 01df:61 01e4:47 01e5:67 01e6:47 01e7:67 01e8:4b 01e9:6b 01ea:4f 01eb:6f 01ec:4f 01ed:6f 01f0:6a 0261:67 02b9:27 02ba:22 02bc:27 02c4:5e 02c8:27 02cb:60 02cd:5f 0300:60 0302:5e 0303:7e 030e:22 0331:5f 0332:5f 037e:3b 0393:47 0398:54 03a3:53 03a6:46 03a9:4f 03b1:61 03b4:64 03b5:65 03c0:70 03c3:73 03c4:74 03c6:66 04bb:68 0589:3a 066a:25 2000:20 2001:20 2002:20 2003:20 2004:20 2005:20 2006:20 2010:2d 2011:2d 2017:3d 2032:27 2035:60 2044:2f 2074:34 2075:35 2076:36 2077:37 2078:38 207f:6e 2080:30 2081:31 2082:32 2083:33 2084:34 2085:35 2086:36 2087:37 2088:38 2089:39 20a7:50 2102:43 2107:45 210a:67 210b:48 210c:48 210d:48 210e:68 2110:49 2111:49 2112:4c 2113:6c 2115:4e 2118:50 2119:50 211a:51 211b:52 211c:52 211d:52 2124:5a 2128:5a 212a:4b 212c:42 212d:43 212e:65 212f:65 2130:45 2131:46 2133:4d 2134:6f 2212:2d 2215:2f 2216:5c 2217:2a 221a:76 221e:38 2223:7c 2229:6e 2236:3a 223c:7e 2261:3d 2264:3d 2265:3d 2303:5e 2320:28 2321:29 2329:3c 232a:3e 2500:2d 250c:2b 2510:2b 2514:2b 2518:2b 251c:2b 252c:2d 2534:2d 253c:2b 2550:2d 2552:2b 2553:2b 2554:2b 2555:2b 2556:2b 2557:2b 2558:2b 2559:2b 255a:2b 255b:2b 255c:2b 255d:2b 2564:2d 2565:2d 2566:2d 2567:2d 2568:2d 2569:2d 256a:2b 256b:2b 256c:2b 2584:5f 2758:7c 3000:20 3008:3c 3009:3e 301a:5b 301b:5d ff01:21 ff02:22 ff03:23 ff04:24 ff05:25 ff06:26 ff07:27 ff08:28 ff09:29 ff0a:2a ff0b:2b ff0c:2c ff0d:2d ff0e:2e ff0f:2f ff10:30 ff11:31 ff12:32 ff13:33 ff14:34 ff15:35 ff16:36 ff17:37 ff18:38 ff19:39 ff1a:3a ff1b:3b ff1c:3c ff1d:3d ff1e:3e ff20:40 ff21:41 ff22:42 ff23:43 ff24:44 ff25:45 ff26:46 ff27:47 ff28:48 ff29:49 ff2a:4a ff2b:4b ff2c:4c ff2d:4d ff2e:4e ff2f:4f ff30:50 ff31:51 ff32:52 ff33:53 ff34:54 ff35:55 ff36:56 ff37:57 ff38:58 ff39:59 ff3a:5a ff3b:5b ff3c:5c ff3d:5d ff3e:5e ff3f:5f ff40:60 ff41:61 ff42:62 ff43:63 ff44:64 ff45:65 ff46:66 ff47:67 ff48:68 ff49:69 ff4a:6a ff4b:6b ff4c:6c ff4d:6d ff4e:6e ff4f:6f ff50:70 ff51:71 ff52:72 ff53:73 ff54:74 ff55:75 ff56:76 ff57:77 ff58:78 ff59:79 ff5a:7a ff5b:7b ff5c:7c ff5d:7d ff5e:7e 
+Type a user name, such as &quot;User01&quot; or &quot;Domain01\User01&quot;. Or, enter a PSCredential object, such as one generated by the Get-Credential cmdlet. If you type a user name, you will be prompted for a password.
 
-1253  (ANSI - Greek)
-00b4:2f 00c0:41 00c1:41 00c2:41 00c3:41 00c4:41 00c5:41 00c7:43 00c8:45 00c9:45 00ca:45 00cb:45 00cc:49 00cd:49 00ce:49 00cf:49 00d1:4e 00d2:4f 00d3:4f 00d4:4f 00d5:4f 00d6:4f 00d8:4f 00d9:55 00da:55 00db:55 00dc:55 00dd:59 00e0:61 00e1:61 00e2:61 00e3:61 00e4:61 00e5:61 00e7:63 00e8:65 00e9:65 00ea:65 00eb:65 00ec:69 00ed:69 00ee:69 00ef:69 00f1:6e 00f2:6f 00f3:6f 00f4:6f 00f5:6f 00f6:6f 00f8:6f 00f9:75 00fa:75 00fb:75 00fc:75 00fd:79 00ff:79 0100:41 0101:61 0102:41 0103:61 0104:41 0105:61 0106:43 0107:63 0108:43 0109:63 010a:43 010b:63 010c:43 010d:63 010e:44 010f:64 0110:44 0111:64 0112:45 0113:65 0114:45 0115:65 0116:45 0117:65 0118:45 0119:65 011a:45 011b:65 011c:47 011d:67 011e:47 011f:67 0120:47 0121:67 0122:47 0123:67 0124:48 0125:68 0126:48 0127:68 0128:49 0129:69 012a:49 012b:69 012c:49 012d:69 012e:49 012f:69 0130:49 0134:4a 0135:6a 0136:4b 0137:6b 0139:4c 013a:6c 013b:4c 013c:6c 013d:4c 013e:6c 0141:4c 0142:6c 0143:4e 0144:6e 0145:4e 0146:6e 0147:4e 0148:6e 014c:4f 014d:6f 014e:4f 014f:6f 0150:4f 0151:6f 0154:52 0155:72 0156:52 0157:72 0158:52 0159:72 015a:53 015b:73 015c:53 015d:73 015e:53 015f:73 0160:53 0161:73 0162:54 0163:74 0164:54 0165:74 0166:54 0167:74 0168:55 0169:75 016a:55 016b:75 016c:55 016d:75 016e:55 016f:75 0170:55 0171:75 0172:55 0173:75 0174:57 0175:77 0176:59 0177:79 0178:59 0179:5a 017b:5a 017c:7a 017d:5a 017e:7a 0180:62 0197:49 019a:6c 019f:4f 01a0:4f 01a1:6f 01ab:74 01ae:54 01af:55 01b0:75 01cd:41 01ce:61 01cf:49 01d0:69 01d1:4f 01d2:6f 01d3:55 01d4:75 01d5:55 01d6:75 01d7:55 01d8:75 01d9:55 01da:75 01db:55 01dc:75 01de:41 01df:61 01e4:47 01e5:67 01e6:47 01e7:67 01e8:4b 01e9:6b 01ea:4f 01eb:6f 01ec:4f 01ed:6f 01f0:6a 037e:3b 203c:21 2190:3c 2191:5e 2192:3e 2193:76 2194:2d 221f:4c 2500:2d 250c:2d 2514:4c 2518:2d 251c:2b 2524:2b 252c:54 2534:2b 253c:2b 2550:3d 2554:2d 255a:4c 255d:2d 2566:54 256c:2b 2580:2d 2584:2d 2588:2d 2591:2d 2592:2d 2593:2d 25ac:2d 25b2:5e 25ba:3e 25c4:3c 25cb:30 25d9:30 263a:4f 263b:4f 263c:30 2640:2b 2642:3e 266a:64 266b:64 ff01:21 ff02:22 ff03:23 ff04:24 ff05:25 ff06:26 ff07:27 ff08:28 ff09:29 ff0a:2a ff0b:2b ff0c:2c ff0d:2d ff0e:2e ff0f:2f ff10:30 ff11:31 ff12:32 ff13:33 ff14:34 ff15:35 ff16:36 ff17:37 ff18:38 ff19:39 ff1a:3a ff1b:3b ff1c:3c ff1d:3d ff1e:3e ff20:40 ff21:41 ff22:42 ff23:43 ff24:44 ff25:45 ff26:46 ff27:47 ff28:48 ff29:49 ff2a:4a ff2b:4b ff2c:4c ff2d:4d ff2e:4e ff2f:4f ff30:50 ff31:51 ff32:52 ff33:53 ff34:54 ff35:55 ff36:56 ff37:57 ff38:58 ff39:59 ff3a:5a ff3b:5b ff3c:5c ff3d:5d ff3e:5e ff3f:5f ff40:60 ff41:61 ff42:62 ff43:63 ff44:64 ff45:65 ff46:66 ff47:67 ff48:68 ff49:69 ff4a:6a ff4b:6b ff4c:6c ff4d:6d ff4e:6e ff4f:6f ff50:70 ff51:71 ff52:72 ff53:73 ff54:74 ff55:75 ff56:76 ff57:77 ff58:78 ff59:79 ff5a:7a ff5b:7b ff5c:7c ff5d:7d ff5e:7e 
+This parameter is not supported by any providers installed with Windows PowerShell.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+				<maml:name>LiteralPath</maml:name>
+				<maml:description>
+					<maml:para>Specifies the paths to be split. Unlike Path, the value of LiteralPath is used exactly as it is typed. No characters are interpreted as wildcards. If the path includes escape characters, enclose it in single quotation marks. Single quotation marks tell Windows PowerShell not to interpret any characters as escape sequences.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>Resolve</maml:name>
+				<maml:description>
+					<maml:para>Displays the items that are referenced by the resulting split path instead of displaying the path elements.</maml:para>
+				</maml:description>
+			</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+   			 <maml:name>UseTransaction</maml:name>
+    			<maml:description>
+				<maml:para>Includes the command in the active transaction. This parameter is valid only when a transaction is in progress. For more information, see about_Transactions.</maml:para>
+    			</maml:description>
+			</command:parameter>
+		</command:syntaxItem>
+		<command:syntaxItem>
+			<maml:name>Split-Path</maml:name>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+				<maml:name>Leaf</maml:name>
+				<maml:description>
+					<maml:para>Returns only the last item or container in the path. For example, in the path &quot;C:\Test\Logs\Pass1.log&quot;, it returns only &quot;Pass1.log&quot;.</maml:para>
+				</maml:description>
+			</command:parameter>
+			<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
+				<maml:name>Path</maml:name>
+				<maml:description>
+					<maml:para>Specifies the paths to be split. Wildcards are permitted. If the path includes spaces, enclose it in quotation marks. You can also pipe a path to Split-Path.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+				<maml:name>Credential</maml:name>
+				<maml:description>
+					<maml:para>Specifies a user account that has permission to perform this action. The default is the current user. 
 
-1254  (ANSI - Turkish)
-00dd:59 00fd:79 0100:41 0101:61 0102:41 0103:61 0104:41 0105:61 0106:43 0107:63 0108:43 0109:63 010a:43 010b:63 010c:43 010d:63 010e:44 010f:64 0110:44 0111:64 0112:45 0113:65 0114:45 0115:65 0116:45 0117:65 0118:45 0119:65 011a:45 011b:65 011c:47 011d:67 0120:47 0121:67 0122:47 0123:67 0124:48 0125:68 0126:48 0127:68 0128:49 0129:69 012a:49 012b:69 012c:49 012d:69 012e:49 012f:69 0134:4a 0135:6a 0136:4b 0137:6b 0139:4c 013a:6c 013b:4c 013c:6c 013d:4c 013e:6c 0141:4c 0142:6c 0143:4e 0144:6e 0145:4e 0146:6e 0147:4e 0148:6e 014c:4f 014d:6f 014e:4f 014f:6f 0150:4f 0151:6f 0154:52 0155:72 0156:52 0157:72 0158:52 0159:72 015a:53 015b:73 015c:53 015d:73 0162:54 0163:74 0164:54 0165:74 0166:54 0167:74 0168:55 0169:75 016a:55 016b:75 016c:55 016d:75 016e:55 016f:75 0170:55 0171:75 0172:55 0173:75 0174:57 0175:77 0176:59 0177:79 0179:5a 017b:5a 017c:7a 017d:5a 017e:7a 0180:62 0189:44 0197:49 019a:6c 019f:4f 01a0:4f 01a1:6f 01ab:74 01ae:54 01af:55 01b0:75 01b6:7a 01c0:7c 01c3:21 01cd:41 01ce:61 01cf:49 01d0:69 01d1:4f 01d2:6f 01d3:55 01d4:75 01d5:55 01d6:75 01d7:55 01d8:75 01d9:55 01da:75 01db:55 01dc:75 01de:41 01df:61 01e4:47 01e5:67 01e6:47 01e7:67 01e8:4b 01e9:6b 01ea:4f 01eb:6f 01ec:4f 01ed:6f 01f0:6a 0261:67 02b9:27 02ba:22 02bc:27 02c4:5e 02c7:5e 02c8:27 02cb:60 02cd:5f 02d8:5e 02d9:27 0300:60 0302:5e 0331:5f 0332:5f 04bb:68 0589:3a 066a:25 2000:20 2001:20 2002:20 2003:20 2004:20 2005:20 2006:20 2010:2d 2011:2d 2032:27 2035:60 203c:21 2044:2f 2074:34 2075:35 2076:36 2077:37 2078:38 2081:30 2084:34 2085:35 2086:36 2087:37 2088:38 2089:39 2102:43 2107:45 210a:67 210b:48 210c:48 210d:48 210e:68 2110:49 2111:49 2112:4c 2113:6c 2115:4e 2118:50 2119:50 211a:51 211b:52 211c:52 211d:52 2124:5a 2128:5a 212a:4b 212c:42 212d:43 212e:65 212f:65 2130:45 2131:46 2133:4d 2134:6f 2191:5e 2193:76 2194:2d 2195:7c 21a8:7c 2212:2d 2215:2f 2216:5c 2217:2a 221f:4c 2223:7c 2236:3a 223c:7e 2303:5e 2329:3c 232a:3e 2502:2d 250c:2d 2514:4c 2518:2d 251c:2b 2524:2b 252c:54 2534:2b 253c:2b 2550:3d 2554:2d 255a:4c 255d:2d 2566:54 256c:2b 2580:2d 2584:2d 2588:2d 2591:2d 2592:2d 2593:2d 25ac:2d 25b2:5e 25ba:3e 25c4:3c 25cb:30 25d9:30 263a:4f 263b:4f 263c:30 2640:2b 2642:3e 266a:64 266b:64 2758:7c 3000:20 3008:3c 3009:3e 301a:5b 301b:3d 301d:22 301e:22 ff01:21 ff02:22 ff03:23 ff04:24 ff05:25 ff06:26 ff07:27 ff08:28 ff09:29 ff0a:2a ff0b:2b ff0c:2c ff0d:2d ff0e:2e ff0f:2f ff10:30 ff11:31 ff12:32 ff13:33 ff14:34 ff15:35 ff16:36 ff17:37 ff18:38 ff19:39 ff1a:3a ff1b:3b ff1c:3c ff1d:3d ff1e:3e ff20:40 ff21:41 ff22:42 ff23:43 ff24:44 ff25:45 ff26:46 ff27:47 ff28:48 ff29:49 ff2a:4a ff2b:4b ff2c:4c ff2d:4d ff2e:4e ff2f:4f ff30:50 ff31:51 ff32:52 ff33:53 ff34:54 ff35:55 ff36:56 ff37:57 ff38:58 ff39:59 ff3a:5a ff3b:5b ff3c:5c ff3d:5d ff3e:5e ff3f:5f ff40:60 ff41:61 ff42:62 ff43:63 ff44:64 ff45:65 ff46:66 ff47:67 ff48:68 ff49:69 ff4a:6a ff4b:6b ff4c:6c ff4d:6d ff4e:6e ff4f:6f ff50:70 ff51:71 ff52:72 ff53:73 ff54:74 ff55:75 ff56:76 ff57:77 ff58:78 ff59:79 ff5a:7a ff5b:7b ff5c:7c ff5d:7d ff5e:7e 
+Type a user name, such as &quot;User01&quot; or &quot;Domain01\User01&quot;. Or, enter a PSCredential object, such as one generated by the Get-Credential cmdlet. If you type a user name, you will be prompted for a password.
 
-1255  (ANSI - Hebrew)
-0191:46 ff01:21 ff02:22 ff03:23 ff04:24 ff05:25 ff06:26 ff07:27 ff08:28 ff09:29 ff0a:2a ff0b:2b ff0c:2c ff0d:2d ff0e:2e ff0f:2f ff10:30 ff11:31 ff12:32 ff13:33 ff14:34 ff15:35 ff16:36 ff17:37 ff18:38 ff19:39 ff1a:3a ff1b:3b ff1c:3c ff1d:3d ff1e:3e ff20:40 ff21:41 ff22:42 ff23:43 ff24:44 ff25:45 ff26:46 ff27:47 ff28:48 ff29:49 ff2a:4a ff2b:4b ff2c:4c ff2d:4d ff2e:4e ff2f:4f ff30:50 ff31:51 ff32:52 ff33:53 ff34:54 ff35:55 ff36:56 ff37:57 ff38:58 ff39:59 ff3a:5a ff3b:5b ff3c:5c ff3d:5d ff3e:5e ff3f:5f ff40:60 ff41:61 ff42:62 ff43:63 ff44:64 ff45:65 ff46:66 ff47:67 ff48:68 ff49:69 ff4a:6a ff4b:6b ff4c:6c ff4d:6d ff4e:6e ff4f:6f ff50:70 ff51:71 ff52:72 ff53:73 ff54:74 ff55:75 ff56:76 ff57:77 ff58:78 ff59:79 ff5a:7a ff5b:7b ff5c:7c ff5d:7d ff5e:7e 
+This parameter is not supported by any providers installed with Windows PowerShell.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+				<maml:name>LiteralPath</maml:name>
+				<maml:description>
+					<maml:para>Specifies the paths to be split. Unlike Path, the value of LiteralPath is used exactly as it is typed. No characters are interpreted as wildcards. If the path includes escape characters, enclose it in single quotation marks. Single quotation marks tell Windows PowerShell not to interpret any characters as escape sequences.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>Resolve</maml:name>
+				<maml:description>
+					<maml:para>Displays the items that are referenced by the resulting split path instead of displaying the path elements.</maml:para>
+				</maml:description>
+			</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+   			 <maml:name>UseTransaction</maml:name>
+    			<maml:description>
+				<maml:para>Includes the command in the active transaction. This parameter is valid only when a transaction is in progress. For more information, see about_Transactions.</maml:para>
+    			</maml:description>
+			</command:parameter>
+		</command:syntaxItem>
+		<command:syntaxItem>
+			<maml:name>Split-Path</maml:name>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+				<maml:name>NoQualifier</maml:name>
+				<maml:description>
+					<maml:para>Returns the path without the qualifier. For the FileSystem or registry providers, the qualifier is the drive of the provider path, such as C: or HKCU:. For example, in the path  &quot;C:\Test\Logs\Pass1.log&quot;, it returns only &quot;\Test\Logs\Pass1.log&quot;.</maml:para>
+				</maml:description>
+			</command:parameter>
+			<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
+				<maml:name>Path</maml:name>
+				<maml:description>
+					<maml:para>Specifies the paths to be split. Wildcards are permitted. If the path includes spaces, enclose it in quotation marks. You can also pipe a path to Split-Path.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+				<maml:name>Credential</maml:name>
+				<maml:description>
+					<maml:para>Specifies a user account that has permission to perform this action. The default is the current user. 
 
-1256  (ANSI - Arabic)
-00c0:41 00c2:41 00c7:43 00c8:45 00c9:45 00ca:45 00cb:45 00ce:49 00cf:49 00d4:4f 00d9:55 00db:55 00dc:55 0191:46 ff01:21 ff02:22 ff03:23 ff04:24 ff05:25 ff06:26 ff07:27 ff08:28 ff09:29 ff0a:2a ff0b:2b ff0c:2c ff0d:2d ff0e:2e ff0f:2f ff10:30 ff11:31 ff12:32 ff13:33 ff14:34 ff15:35 ff16:36 ff17:37 ff18:38 ff19:39 ff1a:3a ff1b:3b ff1c:3c ff1d:3d ff1e:3e ff20:40 ff21:41 ff22:42 ff23:43 ff24:44 ff25:45 ff26:46 ff27:47 ff28:48 ff29:49 ff2a:4a ff2b:4b ff2c:4c ff2d:4d ff2e:4e ff2f:4f ff30:50 ff31:51 ff32:52 ff33:53 ff34:54 ff35:55 ff36:56 ff37:57 ff38:58 ff39:59 ff3a:5a ff3b:5b ff3c:5c ff3d:5d ff3e:5e ff3f:5f ff40:60 ff41:61 ff42:62 ff43:63 ff44:64 ff45:65 ff46:66 ff47:67 ff48:68 ff49:69 ff4a:6a ff4b:6b ff4c:6c ff4d:6d ff4e:6e ff4f:6f ff50:70 ff51:71 ff52:72 ff53:73 ff54:74 ff55:75 ff56:76 ff57:77 ff58:78 ff59:79 ff5a:7a ff5b:7b ff5c:7c ff5d:7d ff5e:7e 
+Type a user name, such as &quot;User01&quot; or &quot;Domain01\User01&quot;. Or, enter a PSCredential object, such as one generated by the Get-Credential cmdlet. If you type a user name, you will be prompted for a password.
 
-1257  (ANSI - Baltic)
-ff01:21 ff02:22 ff03:23 ff04:24 ff05:25 ff06:26 ff07:27 ff08:28 ff09:29 ff0a:2a ff0b:2b ff0c:2c ff0d:2d ff0e:2e ff0f:2f ff10:30 ff11:31 ff12:32 ff13:33 ff14:34 ff15:35 ff16:36 ff17:37 ff18:38 ff19:39 ff1a:3a ff1b:3b ff1c:3c ff1d:3d ff1e:3e ff20:40 ff21:41 ff22:42 ff23:43 ff24:44 ff25:45 ff26:46 ff27:47 ff28:48 ff29:49 ff2a:4a ff2b:4b ff2c:4c ff2d:4d ff2e:4e ff2f:4f ff30:50 ff31:51 ff32:52 ff33:53 ff34:54 ff35:55 ff36:56 ff37:57 ff38:58 ff39:59 ff3a:5a ff3b:5b ff3c:5c ff3d:5d ff3e:5e ff3f:5f ff40:60 ff41:61 ff42:62 ff43:63 ff44:64 ff45:65 ff46:66 ff47:67 ff48:68 ff49:69 ff4a:6a ff4b:6b ff4c:6c ff4d:6d ff4e:6e ff4f:6f ff50:70 ff51:71 ff52:72 ff53:73 ff54:74 ff55:75 ff56:76 ff57:77 ff58:78 ff59:79 ff5a:7a ff5b:7b ff5c:7c ff5d:7d ff5e:7e 
+This parameter is not supported by any providers installed with Windows PowerShell.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+				<maml:name>LiteralPath</maml:name>
+				<maml:description>
+					<maml:para>Specifies the paths to be split. Unlike Path, the value of LiteralPath is used exactly as it is typed. No characters are interpreted as wildcards. If the path includes escape characters, enclose it in single quotation marks. Single quotation marks tell Windows PowerShell not to interpret any characters as escape sequences.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>Resolve</maml:name>
+				<maml:description>
+					<maml:para>Displays the items that are referenced by the resulting split path instead of displaying the path elements.</maml:para>
+				</maml:description>
+			</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+   			 <maml:name>UseTransaction</maml:name>
+    			<maml:description>
+				<maml:para>Includes the command in the active transaction. This parameter is valid only when a transaction is in progress. For more information, see about_Transactions.</maml:para>
+    			</maml:description>
+			</command:parameter>
+		</command:syntaxItem>
+		<command:syntaxItem>
+			<maml:name>Split-Path</maml:name>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+				<maml:name>Parent</maml:name>
+				<maml:description>
+					<maml:para>Returns only the parent containers of the item or of the container specified by the path. For example, in the path &quot;C:\Test\Logs\Pass1.log&quot;, it returns &quot;C:\Test\Logs&quot;. The Parent parameter is the default split location parameter.</maml:para>
+				</maml:description>
+			</command:parameter>
+			<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
+				<maml:name>Path</maml:name>
+				<maml:description>
+					<maml:para>Specifies the paths to be split. Wildcards are permitted. If the path includes spaces, enclose it in quotation marks. You can also pipe a path to Split-Path.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+				<maml:name>Credential</maml:name>
+				<maml:description>
+					<maml:para>Specifies a user account that has permission to perform this action. The default is the current user. 
 
-1258  (ANSI/OEM - Viet Nam)
-ff01:21 ff02:22 ff03:23 ff04:24 ff05:25 ff06:26 ff07:27 ff08:28 ff09:29 ff0a:2a ff0b:2b ff0c:2c ff0d:2d ff0e:2e ff0f:2f ff10:30 ff11:31 ff12:32 ff13:33 ff14:34 ff15:35 ff16:36 ff17:37 ff18:38 ff19:39 ff1a:3a ff1b:3b ff1c:3c ff1d:3d ff1e:3e ff20:40 ff21:41 ff22:42 ff23:43 ff24:44 ff25:45 ff26:46 ff27:47 ff28:48 ff29:49 ff2a:4a ff2b:4b ff2c:4c ff2d:4d ff2e:4e ff2f:4f ff30:50 ff31:51 ff32:52 ff33:53 ff34:54 ff35:55 ff36:56 ff37:57 ff38:58 ff39:59 ff3a:5a ff3b:5b ff3c:5c ff3d:5d ff3e:5e ff3f:5f ff40:60 ff41:61 ff42:62 ff43:63 ff44:64 ff45:65 ff46:66 ff47:67 ff48:68 ff49:69 ff4a:6a ff4b:6b ff4c:6c ff4d:6d ff4e:6e ff4f:6f ff50:70 ff51:71 ff52:72 ff53:73 ff54:74 ff55:75 ff56:76 ff57:77 ff58:78 ff59:79 ff5a:7a ff5b:7b ff5c:7c ff5d:7d ff5e:7e 
+Type a user name, such as &quot;User01&quot; or &quot;Domain01\User01&quot;. Or, enter a PSCredential object, such as one generated by the Get-Credential cmdlet. If you type a user name, you will be prompted for a password.
 
-#INVALID CODEPAGE: 1361
-20127 (US-ASCII)
-00a0:20 00a1:21 00a2:63 00a4:24 00a5:59 00a6:7c 00a9:43 00aa:61 00ab:3c 00ad:2d 00ae:52 00b2:32 00b3:33 00b7:2e 00b8:2c 00b9:31 00ba:6f 00bb:3e 00c0:41 00c1:41 00c2:41 00c3:41 00c4:41 00c5:41 00c6:41 00c7:43 00c8:45 00c9:45 00ca:45 00cb:45 00cc:49 00cd:49 00ce:49 00cf:49 00d0:44 00d1:4e 00d2:4f 00d3:4f 00d4:4f 00d5:4f 00d6:4f 00d8:4f 00d9:55 00da:55 00db:55 00dc:55 00dd:59 00e0:61 00e1:61 00e2:61 00e3:61 00e4:61 00e5:61 00e6:61 00e7:63 00e8:65 00e9:65 00ea:65 00eb:65 00ec:69 00ed:69 00ee:69 00ef:69 00f1:6e 00f2:6f 00f3:6f 00f4:6f 00f5:6f 00f6:6f 00f8:6f 00f9:75 00fa:75 00fb:75 00fc:75 00fd:79 00ff:79 0100:41 0101:61 0102:41 0103:61 0104:41 0105:61 0106:43 0107:63 0108:43 0109:63 010a:43 010b:63 010c:43 010d:63 010e:44 010f:64 0110:44 0111:64 0112:45 0113:65 0114:45 0115:65 0116:45 0117:65 0118:45 0119:65 011a:45 011b:65 011c:47 011d:67 011e:47 011f:67 0120:47 0121:67 0122:47 0123:67 0124:48 0125:68 0126:48 0127:68 0128:49 0129:69 012a:49 012b:69 012c:49 012d:69 012e:49 012f:69 0130:49 0131:69 0134:4a 0135:6a 0136:4b 0137:6b 0139:4c 013a:6c 013b:4c 013c:6c 013d:4c 013e:6c 0141:4c 0142:6c 0143:4e 0144:6e 0145:4e 0146:6e 0147:4e 0148:6e 014c:4f 014d:6f 014e:4f 014f:6f 0150:4f 0151:6f 0152:4f 0153:6f 0154:52 0155:72 0156:52 0157:72 0158:52 0159:72 015a:53 015b:73 015c:53 015d:73 015e:53 015f:73 0160:53 0161:73 0162:54 0163:74 0164:54 0165:74 0166:54 0167:74 0168:55 0169:75 016a:55 016b:75 016c:55 016d:75 016e:55 016f:75 0170:55 0171:75 0172:55 0173:75 0174:57 0175:77 0176:59 0177:79 0178:59 0179:5a 017b:5a 017c:7a 017d:5a 017e:7a 0180:62 0189:44 0191:46 0192:66 0197:49 019a:6c 019f:4f 01a0:4f 01a1:6f 01ab:74 01ae:54 01af:55 01b0:75 01b6:7a 01cd:41 01ce:61 01cf:49 01d0:69 01d1:4f 01d2:6f 01d3:55 01d4:75 01d5:55 01d6:75 01d7:55 01d8:75 01d9:55 01da:75 01db:55 01dc:75 01de:41 01df:61 01e4:47 01e5:67 01e6:47 01e7:67 01e8:4b 01e9:6b 01ea:4f 01eb:6f 01ec:4f 01ed:6f 01f0:6a 0261:67 02b9:27 02ba:22 02bc:27 02c4:5e 02c6:5e 02c8:27 02cb:60 02cd:5f 02dc:7e 0300:60 0302:5e 0303:7e 030e:22 0331:5f 0332:5f 2000:20 2001:20 2002:20 2003:20 2004:20 2005:20 2006:20 2010:2d 2011:2d 2013:2d 2014:2d 2018:27 2019:27 201a:2c 201c:22 201d:22 201e:22 2022:2e 2026:2e 2032:27 2035:60 2039:3c 203a:3e 2122:54 ff01:21 ff02:22 ff03:23 ff04:24 ff05:25 ff06:26 ff07:27 ff08:28 ff09:29 ff0a:2a ff0b:2b ff0c:2c ff0d:2d ff0e:2e ff0f:2f ff10:30 ff11:31 ff12:32 ff13:33 ff14:34 ff15:35 ff16:36 ff17:37 ff18:38 ff19:39 ff1a:3a ff1b:3b ff1c:3c ff1d:3d ff1e:3e ff20:40 ff21:41 ff22:42 ff23:43 ff24:44 ff25:45 ff26:46 ff27:47 ff28:48 ff29:49 ff2a:4a ff2b:4b ff2c:4c ff2d:4d ff2e:4e ff2f:4f ff30:50 ff31:51 ff32:52 ff33:53 ff34:54 ff35:55 ff36:56 ff37:57 ff38:58 ff39:59 ff3a:5a ff3b:5b ff3c:5c ff3d:5d ff3e:5e ff3f:5f ff40:60 ff41:61 ff42:62 ff43:63 ff44:64 ff45:65 ff46:66 ff47:67 ff48:68 ff49:69 ff4a:6a ff4b:6b ff4c:6c ff4d:6d ff4e:6e ff4f:6f ff50:70 ff51:71 ff52:72 ff53:73 ff54:74 ff55:75 ff56:76 ff57:77 ff58:78 ff59:79 ff5a:7a ff5b:7b ff5c:7c ff5d:7d ff5e:7e 
+This parameter is not supported by any providers installed with Windows PowerShell.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+				<maml:name>LiteralPath</maml:name>
+				<maml:description>
+					<maml:para>Specifies the paths to be split. Unlike Path, the value of LiteralPath is used exactly as it is typed. No characters are interpreted as wildcards. If the path includes escape characters, enclose it in single quotation marks. Single quotation marks tell Windows PowerShell not to interpret any characters as escape sequences.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>Resolve</maml:name>
+				<maml:description>
+					<maml:para>Displays the items that are referenced by the resulting split path instead of displaying the path elements.</maml:para>
+				</maml:description>
+			</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+   			 <maml:name>UseTransaction</maml:name>
+    			<maml:description>
+				<maml:para>Includes the command in the active transaction. This parameter is valid only when a transaction is in progress. For more information, see about_Transactions.</maml:para>
+    			</maml:description>
+			</command:parameter>
+		</command:syntaxItem>
+		<command:syntaxItem>
+			<maml:name>Split-Path</maml:name>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="2">
+				<maml:name>Qualifier</maml:name>
+				<maml:description>
+					<maml:para>Returns only the qualifier of the specified path. For the FileSystem or registry providers, the qualifier is the drive of the provider path, such as C: or HKCU:.</maml:para>
+				</maml:description>
+			</command:parameter>
+			<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
+				<maml:name>Path</maml:name>
+				<maml:description>
+					<maml:para>Specifies the paths to be split. Wildcards are permitted. If the path includes spaces, enclose it in quotation marks. You can also pipe a path to Split-Path.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+				<maml:name>Credential</maml:name>
+				<maml:description>
+					<maml:para>Specifies a user account that has permission to perform this action. The default is the current user. 
 
-20261 (T.61)
-f8dd:5c f8de:5e f8df:60 f8e0:7b f8fc:7d f8fd:7e f8fe:7f 
+Type a user name, such as &quot;User01&quot; or &quot;Domain01\User01&quot;. Or, enter a PSCredential object, such as one generated by the Get-Credential cmdlet. If you type a user name, you will be prompted for a password.
 
-20866 (Russian - KOI8)
-00a7:15 00ab:3c 00ad:2d 00ae:52 00b1:2b 00b6:14 00bb:3e 00c0:41 00c1:41 00c2:41 00c3:41 00c4:41 00c5:41 00c7:43 00c8:45 00c9:45 00ca:45 00cb:45 00cc:49 00cd:49 00ce:49 00cf:49 00d1:4e 00d2:4f 00d3:4f 00d4:4f 00d5:4f 00d6:4f 00d8:4f 00d9:55 00da:55 00db:55 00dc:55 00dd:59 00e0:61 00e1:61 00e2:61 00e3:61 00e4:61 00e5:61 00e7:63 00e8:65 00e9:65 00ea:65 00eb:65 00ec:69 00ed:69 00ee:69 00ef:69 00f1:6e 00f2:6f 00f3:6f 00f4:6f 00f5:6f 00f6:6f 00f8:6f 00f9:75 00fa:75 00fb:75 00fc:75 00fd:79 00ff:79 0100:41 0101:61 0102:41 0103:61 0104:41 0105:61 0106:43 0107:63 0108:43 0109:63 010a:43 010b:63 010c:43 010d:63 010e:44 010f:64 0110:44 0111:64 0112:45 0113:65 0114:45 0115:65 0116:45 0117:65 0118:45 0119:65 011a:45 011b:65 011c:47 011d:67 011e:47 011f:67 0120:47 0121:67 0122:47 0123:67 0124:48 0125:68 0126:48 0127:68 0128:49 0129:69 012a:49 012b:69 012c:49 012d:69 012e:49 012f:69 0130:49 0134:4a 0135:6a 0136:4b 0137:6b 0139:4c 013a:6c 013b:4c 013c:6c 013d:4c 013e:6c 0141:4c 0142:6c 0143:4e 0144:6e 0145:4e 0146:6e 0147:4e 0148:6e 014c:4f 014d:6f 014e:4f 014f:6f 0150:4f 0151:6f 0154:52 0155:72 0156:52 0157:72 0158:52 0159:72 015a:53 015b:73 015c:53 015d:73 015e:53 015f:73 0160:53 0161:73 0162:54 0163:74 0164:54 0165:74 0166:54 0167:74 0168:55 0169:75 016a:55 016b:75 016c:55 016d:75 016e:55 016f:75 0170:55 0171:75 0172:55 0173:75 0174:57 0175:77 0176:59 0177:79 0178:59 0179:5a 017b:5a 017c:7a 017d:5a 017e:7a 0180:62 0197:49 019a:6c 019f:4f 01a0:4f 01a1:6f 01ab:74 01ae:54 01af:55 01b0:75 01cd:41 01ce:61 01cf:49 01d0:69 01d1:4f 01d2:6f 01d3:55 01d4:75 01d5:55 01d6:75 01d7:55 01d8:75 01d9:55 01da:75 01db:55 01dc:75 01de:41 01df:61 01e4:47 01e5:67 01e6:47 01e7:67 01e8:4b 01e9:6b 01ea:4f 01eb:6f 01ec:4f 01ed:6f 01f0:6a 2013:2d 2014:2d 2018:27 2019:27 201a:27 201c:22 201d:22 201e:22 2022:07 2026:3a 2030:25 2039:3c 203a:3e 203c:13 2122:54 2190:1b 2191:18 2192:1a 2193:19 2194:1d 2195:12 21a8:17 221f:1c 2302:7f 25ac:16 25b2:1e 25ba:10 25bc:1f 25c4:11 25cb:09 25d8:08 25d9:0a 263a:01 263b:02 263c:0f 2640:0c 2642:0b 2660:06 2663:05 2665:03 2666:04 266a:0d 266b:0e 
+This parameter is not supported by any providers installed with Windows PowerShell.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+				<maml:name>LiteralPath</maml:name>
+				<maml:description>
+					<maml:para>Specifies the paths to be split. Unlike Path, the value of LiteralPath is used exactly as it is typed. No characters are interpreted as wildcards. If the path includes escape characters, enclose it in single quotation marks. Single quotation marks tell Windows PowerShell not to interpret any characters as escape sequences.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>Resolve</maml:name>
+				<maml:description>
+					<maml:para>Displays the items that are referenced by the resulting split path instead of displaying the path elements.</maml:para>
+				</maml:description>
+			</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+   			 <maml:name>UseTransaction</maml:name>
+    			<maml:description>
+				<maml:para>Includes the command in the active transaction. This parameter is valid only when a transaction is in progress. For more information, see about_Transactions.</maml:para>
+    			</maml:description>
+			</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<!-- Cmdlet parameter section  -->
+	<command:parameters>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+			<maml:name>Credential</maml:name>
+			<maml:description>
+				<maml:para>Specifies a user account that has permission to perform this action. The default is the current user. 
 
-28591 (ISO 8859-1 Latin I)
-0100:41 0101:61 0102:41 0103:61 0104:41 0105:61 0106:43 0107:63 0108:43 0109:63 010a:43 010b:63 010c:43 010d:63 010e:44 010f:64 0110:44 0111:64 0112:45 0113:65 0114:45 0115:65 0116:45 0117:65 0118:45 0119:65 011a:45 011b:65 011c:47 011d:67 011e:47 011f:67 0120:47 0121:67 0122:47 0123:67 0124:48 0125:68 0126:48 0127:68 0128:49 0129:69 012a:49 012b:69 012c:49 012d:69 012e:49 012f:69 0130:49 0131:69 0134:4a 0135:6a 0136:4b 0137:6b 0139:4c 013a:6c 013b:4c 013c:6c 013d:4c 013e:6c 0141:4c 0142:6c 0143:4e 0144:6e 0145:4e 0146:6e 0147:4e 0148:6e 014c:4f 014d:6f 014e:4f 014f:6f 0150:4f 0151:6f 0152:4f 0153:6f 0154:52 0155:72 0156:52 0157:72 0158:52 0159:72 015a:53 015b:73 015c:53 015d:73 015e:53 015f:73 0160:53 0161:73 0162:54 0163:74 0164:54 0165:74 0166:54 0167:74 0168:55 0169:75 016a:55 016b:75 016c:55 016d:75 016e:55 016f:75 0170:55 0171:75 0172:55 0173:75 0174:57 0175:77 0176:59 0177:79 0178:59 0179:5a 017b:5a 017c:7a 017d:5a 017e:7a 0180:62 0189:44 0191:46 0192:66 0197:49 019a:6c 019f:4f 01a0:4f 01a1:6f 01ab:74 01ae:54 01af:55 01b0:75 01b6:7a 01cd:41 01ce:61 01cf:49 01d0:69 01d1:4f 01d2:6f 01d3:55 01d4:75 01d5:55 01d6:75 01d7:55 01d8:75 01d9:55 01da:75 01db:55 01dc:75 01de:41 01df:61 01e4:47 01e5:67 01e6:47 01e7:67 01e8:4b 01e9:6b 01ea:4f 01eb:6f 01ec:4f 01ed:6f 01f0:6a 0261:67 02b9:27 02ba:22 02bc:27 02c4:5e 02c6:5e 02c8:27 02cb:60 02cd:5f 02dc:7e 0300:60 0302:5e 0303:7e 030e:22 0331:5f 0332:5f 2000:20 2001:20 2002:20 2003:20 2004:20 2005:20 2006:20 2010:2d 2011:2d 2013:2d 2014:2d 2018:27 2019:27 201a:2c 201c:22 201d:22 201e:22 2022:2e 2026:2e 2032:27 2035:60 2039:3c 203a:3e 2122:54 ff01:21 ff02:22 ff03:23 ff04:24 ff05:25 ff06:26 ff07:27 ff08:28 ff09:29 ff0a:2a ff0b:2b ff0c:2c ff0d:2d ff0e:2e ff0f:2f ff10:30 ff11:31 ff12:32 ff13:33 ff14:34 ff15:35 ff16:36 ff17:37 ff18:38 ff19:39 ff1a:3a ff1b:3b ff1c:3c ff1d:3d ff1e:3e ff20:40 ff21:41 ff22:42 ff23:43 ff24:44 ff25:45 ff26:46 ff27:47 ff28:48 ff29:49 ff2a:4a ff2b:4b ff2c:4c ff2d:4d ff2e:4e ff2f:4f ff30:50 ff31:51 ff32:52 ff33:53 ff34:54 ff35:55 ff36:56 ff37:57 ff38:58 ff39:59 ff3a:5a ff3b:5b ff3c:5c ff3d:5d ff3e:5e ff3f:5f ff40:60 ff41:61 ff42:62 ff43:63 ff44:64 ff45:65 ff46:66 ff47:67 ff48:68 ff49:69 ff4a:6a ff4b:6b ff4c:6c ff4d:6d ff4e:6e ff4f:6f ff50:70 ff51:71 ff52:72 ff53:73 ff54:74 ff55:75 ff56:76 ff57:77 ff58:78 ff59:79 ff5a:7a ff5b:7b ff5c:7c ff5d:7d ff5e:7e 
+Type a user name, such as &quot;User01&quot; or &quot;Domain01\User01&quot;. Or, enter a PSCredential object, such as one generated by the Get-Credential cmdlet. If you type a user name, you will be prompted for a password.
 
-28592 (ISO 8859-2 Central Europe)
-00a1:21 00a2:63 00a5:59 00a6:7c 00a9:43 00aa:61 00ab:3c 00ae:52 00b2:32 00b3:33 00b7:2e 00b9:31 00ba:6f 00bb:3e 00c0:41 00c3:41 00c5:41 00c6:41 00c8:45 00ca:45 00cc:49 00cf:49 00d0:44 00d1:4e 00d2:4f 00d5:4f 00d8:4f 00d9:55 00db:55 00e0:61 00e3:61 00e5:61 00e6:61 00e8:65 00ea:65 00ec:69 00ef:69 00f1:6e 00f2:6f 00f5:6f 00f8:6f 00f9:75 00fb:75 00ff:79 0100:41 0101:61 0108:43 0109:63 010a:43 010b:63 0112:45 0113:65 0114:45 0115:65 0116:45 0117:65 011c:47 011d:67 011e:47 011f:67 0120:47 0121:67 0122:47 0123:67 0124:48 0125:68 0126:48 0127:68 0128:49 0129:69 012a:49 012b:69 012c:49 012d:69 012e:49 012f:69 0130:49 0131:69 0134:4a 0135:6a 0136:4b 0137:6b 013b:4c 013c:6c 0145:4e 0146:6e 014c:4f 014d:6f 014e:4f 014f:6f 0152:4f 0153:6f 0156:52 0157:72 015c:53 015d:73 0166:54 0167:74 0168:55 0169:75 016a:55 016b:75 016c:55 016d:75 0172:55 0173:75 0174:57 0175:77 0176:59 0177:79 0178:59 0180:62 0189:44 0191:46 0192:66 0197:49 019a:6c 019f:4f 01a0:4f 01a1:6f 01ab:74 01ae:54 01af:55 01b0:75 01b6:7a 01cd:41 01ce:61 01cf:49 01d0:69 01d1:4f 01d2:6f 01d3:55 01d4:75 01d5:55 01d6:75 01d7:55 01d8:75 01d9:55 01da:75 01db:55 01dc:75 01de:41 01df:61 01e4:47 01e5:67 01e6:47 01e7:67 01e8:4b 01e9:6b 01ea:4f 01eb:6f 01ec:4f 01ed:6f 01f0:6a 0261:67 02b9:27 02ba:22 02bc:27 02c4:5e 02c6:5e 02c8:27 02cb:60 02cd:5f 02dc:7e 0300:60 0302:5e 0303:7e 030e:22 0331:5f 0332:5f 2000:20 2001:20 2002:20 2003:20 2004:20 2005:20 2006:20 2010:2d 2011:2d 2013:2d 2014:2d 2018:27 2019:27 201a:2c 201c:22 201d:22 201e:22 2022:2e 2026:2e 2032:27 2035:60 2039:3c 203a:3e 2122:54 ff01:21 ff02:22 ff03:23 ff04:24 ff05:25 ff06:26 ff07:27 ff08:28 ff09:29 ff0a:2a ff0b:2b ff0c:2c ff0d:2d ff0e:2e ff0f:2f ff10:30 ff11:31 ff12:32 ff13:33 ff14:34 ff15:35 ff16:36 ff17:37 ff18:38 ff19:39 ff1a:3a ff1b:3b ff1c:3c ff1d:3d ff1e:3e ff20:40 ff21:41 ff22:42 ff23:43 ff24:44 ff25:45 ff26:46 ff27:47 ff28:48 ff29:49 ff2a:4a ff2b:4b ff2c:4c ff2d:4d ff2e:4e ff2f:4f ff30:50 ff31:51 ff32:52 ff33:53 ff34:54 ff35:55 ff36:56 ff37:57 ff38:58 ff39:59 ff3a:5a ff3b:5b ff3c:5c ff3d:5d ff3e:5e ff3f:5f ff40:60 ff41:61 ff42:62 ff43:63 ff44:64 ff45:65 ff46:66 ff47:67 ff48:68 ff49:69 ff4a:6a ff4b:6b ff4c:6c ff4d:6d ff4e:6e ff4f:6f ff50:70 ff51:71 ff52:72 ff53:73 ff54:74 ff55:75 ff56:76 ff57:77 ff58:78 ff59:79 ff5a:7a ff5b:7b ff5c:7c ff5d:7d ff5e:7e 
+This parameter is not supported by any providers installed with Windows PowerShell.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+			<dev:type>
+				<maml:name>PSCredential</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>IsAbsolute</maml:name>
+			<maml:description>
+				<maml:para>Returns TRUE if the path is absolute and FALSE if it is relative. An absolute path has a length greater than zero and does not use a dot ( . ) to indicate the current path.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+			<maml:name>Leaf</maml:name>
+			<maml:description>
+				<maml:para>Returns only the last item or container in the path. For example, in the path &quot;C:\Test\Logs\Pass1.log&quot;, it returns only &quot;Pass1.log&quot;.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+			<maml:name>LiteralPath</maml:name>
+			<maml:description>
+				<maml:para>Specifies the paths to be split. Unlike Path, the value of LiteralPath is used exactly as it is typed. No characters are interpreted as wildcards. If the path includes escape characters, enclose it in single quotation marks. Single quotation marks tell Windows PowerShell not to interpret any characters as escape sequences.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			<dev:type>
+				<maml:name>string[]</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+			<maml:name>NoQualifier</maml:name>
+			<maml:description>
+				<maml:para>Returns the path without the qualifier. For the FileSystem or registry providers, the qualifier is the drive of the provider path, such as C: or HKCU:. For example, in the path  &quot;C:\Test\Logs\Pass1.log&quot;, it returns only &quot;\Test\Logs\Pass1.log&quot;.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
+			<maml:name>Parent</maml:name>
+			<maml:description>
+				<maml:para>Returns only the parent containers of the item or of the container specified by the path. For example, in the path &quot;C:\Test\Logs\Pass1.log&quot;, it returns &quot;C:\Test\Logs&quot;. The Parent parameter is the default split location parameter.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="true" variableLength="true" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
+			<maml:name>Path</maml:name>
+			<maml:description>
+				<maml:para>Specifies the paths to be split. Wildcards are permitted. If the path includes spaces, enclose it in quotation marks. You can also pipe a path to Split-Path.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="true" variableLength="true">string[]</command:parameterValue>
+			<dev:type>
+				<maml:name>string[]</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="2">
+			<maml:name>Qualifier</maml:name>
+			<maml:description>
+				<maml:para>Returns only the qualifier of the specified path. For the FileSystem or registry providers, the qualifier is the drive of the provider path, such as C: or HKCU:.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>Resolve</maml:name>
+			<maml:description>
+				<maml:para>Displays the items that are referenced by the resulting split path instead of displaying the path elements.</maml:para>
+								
+			</maml:description>
+			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+			<command:parameter required="false" variableLength="true" globbing="false" pipelineInput="false" position="named">
+   			 <maml:name>UseTransaction</maml:name>
+    			<maml:description>
+				<maml:para>Includes the command in the active transaction. This parameter is valid only when a transaction is in progress. For more information, see about_Transactions.</maml:para>
+    			</maml:description>
+    			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>	
+				<dev:type>
+  				<maml:name>SwitchParameter</maml:name> 
+					<maml:uri /> 
+					</dev:type>
+ 			<dev:defaultValue /> 
+			</command:parameter>
+	</command:parameters>
+	<!-- Input - Output section-->
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name>System.String</maml:name>
+				<maml:uri/>
+				<maml:description />
+			</dev:type>
+			<maml:description>
+				<maml:para>
+					<!-- description  -->
+					You can pipe a string that contains a path to Split-Path.
+				</maml:para>
+			</maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name>System.String</maml:name>
+				<maml:uri />
+				<maml:description />
+			</dev:type>   
+			<maml:description>
+				<maml:para>
+					<!-- description  -->
+					The Split-Path cmdlet returns text strings. When you use the Resolve parameter, Split-Path returns a string that describes the location of the items; it does not return objects that represent the items, such as a FileInfo or RegistryKey object.
+				</maml:para>
+			</maml:description> 
+		</command:returnValue>
+	</command:returnValues>
+	<!-- Error section-->
+	<command:terminatingErrors />
+	<command:nonTerminatingErrors />
+		<!-- Notes section  -->
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para>
+                          The split location parameters (Qualifier, Parent, Leaf, and NoQualifier) are exclusive. You can use only one in each command. 
 
-#INVALID CODEPAGE: 28595
-#INVALID CODEPAGE: 28597
-28605 (ISO 8859-15 Latin 9)
-00a6:7c 0100:41 0101:61 0102:41 0103:61 0104:41 0105:61 0106:43 0107:63 0108:43 0109:63 010a:43 010b:63 010c:43 010d:63 010e:44 010f:64 0112:45 0113:65 0114:45 0115:65 0116:45 0117:65 0118:45 0119:65 011a:45 011b:65 011c:47 011d:67 011e:47 011f:67 0120:47 0121:67 0122:47 0123:67 0124:48 0125:68 0126:48 0127:68 0128:49 0129:69 012a:49 012b:69 012c:49 012d:69 012e:49 012f:69 0130:49 0131:69 0134:4a 0135:6a 0136:4b 0137:6b 0138:6b 0139:4c 013a:6c 013b:4c 013c:6c 013d:4c 013e:6c 0141:4c 0142:6c 0143:4e 0144:6e 0145:4e 0146:6e 0147:4e 0148:6e 014a:4e 014b:6e 014c:4f 014d:6f 014e:4f 014f:6f 0150:4f 0151:6f 0154:52 0155:72 0156:52 0157:72 0158:52 0159:72 015a:53 015b:73 015c:53 015d:73 015e:53 015f:73 0162:54 0163:74 0164:54 0165:74 0166:54 0167:74 0168:54 0169:74 016a:55 016b:75 016c:55 016d:75 016e:55 016f:75 0170:55 0171:75 0172:55 0173:75 0174:57 0175:77 0176:59 0177:79 0179:5a 017b:5a 017c:7a 0180:62 0189:44 0191:46 0192:66 0197:49 019a:6c 019f:4f 01a0:4f 01a1:6f 01ab:74 01ae:54 01af:55 01b0:75 01b6:7a 01cd:41 01ce:61 01cf:49 01d0:69 01d1:4f 01d2:6f 01d3:55 01d4:75 01d5:55 01d6:75 01d7:55 01d8:75 01d9:55 01da:75 01db:55 01dc:75 01de:41 01df:61 01e4:47 01e5:67 01e6:47 01e7:67 01e8:4b 01e9:6b 01ea:4f 01eb:6f 01ec:4f 01ed:6f 01f0:6a 0261:67 02b9:27 02ba:22 02bc:27 02c4:5e 02c6:5e 02c8:27 02cb:60 02cd:5f 02dc:7e 0300:60 0302:5e 0303:7e 030e:22 0331:5f 0332:5f 2000:20 2001:20 2002:20 2003:20 2004:20 2005:20 2006:20 2010:2d 2011:2d 2013:2d 2014:2d 2018:27 2019:27 201a:2c 201c:22 201d:22 201e:22 2022:2e 2026:2e 2032:27 2035:60 2039:3c 203a:3e 2122:54 ff01:21 ff02:22 ff03:23 ff04:24 ff05:25 ff06:26 ff07:27 ff08:28 ff09:29 ff0a:2a ff0b:2b ff0c:2c ff0d:2d ff0e:2e ff0f:2f ff10:30 ff11:31 ff12:32 ff13:33 ff14:34 ff15:35 ff16:36 ff17:37 ff18:38 ff19:39 ff1a:3a ff1b:3b ff1c:3c ff1d:3d ff1e:3e ff20:40 ff21:41 ff22:42 ff23:43 ff24:44 ff25:45 ff26:46 ff27:47 ff28:48 ff29:49 ff2a:4a ff2b:4b ff2c:4c ff2d:4d ff2e:4e ff2f:4f ff30:50 ff31:51 ff32:52 ff33:53 ff34:54 ff35:55 ff36:56 ff37:57 ff38:58 ff39:59 ff3a:5a ff3b:5b ff3c:5c ff3d:5d ff3e:5e ff3f:5f ff40:60 ff41:61 ff42:62 ff43:63 ff44:64 ff45:65 ff46:66 ff47:67 ff48:68 ff49:69 ff4a:6a ff4b:6b ff4c:6c ff4d:6d ff4e:6e ff4f:6f ff50:70 ff51:71 ff52:72 ff53:73 ff54:74 ff55:75 ff56:76 ff57:77 ff58:78 ff59:79 ff5a:7a ff5b:7b ff5c:7c ff5d:7d ff5e:7e 
+The cmdlets that contain the Path noun (the Path cmdlets) manipulate path names and return the names in a concise format that all Windows PowerShell providers can interpret. They are designed for use in programs and scripts where you want to display all or part of a path name in a particular format. Use them like you would use Dirname, Normpath, Realpath, Join, or other path manipulators.
 
-37    (IBM EBCDIC - U.S./Canada)
-0004:37 0005:2d 0006:2e 0007:2f 0008:16 0009:05 000a:25 0014:3c 0015:3d 0016:32 0017:26 001a:3f 001b:27 0020:40 0021:5a 0022:7f 0023:7b 0024:5b 0025:6c 0026:50 0027:7d 0028:4d 0029:5d 002a:5c 002b:4e 002c:6b 002d:60 002e:4b 002f:61 003a:7a 003b:5e 003c:4c 003d:7e 003e:6e 003f:6f 0040:7c 005f:6d 0060:79 007c:4f 007f:07 0080:20 0081:21 0082:22 0083:23 0084:24 0085:15 0086:06 0087:17 0088:28 0089:29 008a:2a 008b:2b 008c:2c 008d:09 008e:0a 008f:1b 0090:30 0091:31 0092:1a 0093:33 0094:34 0095:35 0096:36 0097:08 0098:38 0099:39 009a:3a 009b:3b 009c:04 009d:14 009e:3e 00a0:41 00a2:4a 00a6:6a 00ac:5f 00c0:64 00c1:65 00c2:62 00c3:66 00c4:63 00c5:67 00c7:68 00c8:74 00c9:71 00ca:72 00cb:73 00cc:78 00cd:75 00ce:76 00cf:77 00d1:69 00df:59 00e0:44 00e1:45 00e2:42 00e3:46 00e4:43 00e5:47 00e7:48 00e8:54 00e9:51 00ea:52 00eb:53 00ec:58 00ed:55 00ee:56 00ef:57 00f1:49 00f8:70 ff01:5a ff02:7f ff03:7b ff04:5b ff05:6c ff06:50 ff07:7d ff08:4d ff09:5d ff0a:5c ff0b:4e ff0c:6b ff0d:60 ff0e:4b ff0f:61 ff1a:7a ff1b:5e ff1c:4c ff1d:7e ff1e:6e ff20:7c ff3f:6d ff40:79 ff5c:4f 
+You can use the Path cmdlets with several providers, including the FileSystem, Registry, and Certificate providers.
 
-437   (OEM - United States)
-00a4:0f 00a7:15 00a8:22 00a9:63 00ad:2d 00ae:72 00af:5f 00b3:33 00b4:27 00b6:14 00b8:2c 00b9:31 00be:5f 00c0:41 00c1:41 00c2:41 00c3:41 00c8:45 00ca:45 00cb:45 00cc:49 00cd:49 00ce:49 00cf:49 00d0:44 00d2:4f 00d3:4f 00d4:4f 00d5:4f 00d7:78 00d8:4f 00d9:55 00da:55 00db:55 00dd:59 00de:5f 00e3:61 00f0:64 00f5:6f 00f8:6f 00fd:79 00fe:5f 0100:41 0101:61 0102:41 0103:61 0104:41 0105:61 0106:43 0107:63 0108:43 0109:63 010a:43 010b:63 010c:43 010d:63 010e:44 010f:64 0110:44 0111:64 0112:45 0113:65 0114:45 0115:65 0116:45 0117:65 0118:45 0119:65 011a:45 011b:65 011c:47 011d:67 011e:47 011f:67 0120:47 0121:67 0122:47 0123:67 0124:48 0125:68 0126:48 0127:68 0128:49 0129:69 012a:49 012b:69 012c:49 012d:69 012e:49 012f:69 0130:49 0131:69 0134:4a 0135:6a 0136:4b 0137:6b 0139:4c 013a:6c 013b:4c 013c:6c 013d:4c 013e:6c 0141:4c 0142:6c 0143:4e 0144:6e 0145:4e 0146:6e 0147:4e 0148:6e 014c:4f 014d:6f 014e:4f 014f:6f 0150:4f 0151:6f 0152:4f 0153:6f 0154:52 0155:72 0156:52 0157:72 0158:52 0159:72 015a:53 015b:73 015c:53 015d:73 015e:53 015f:73 0160:53 0161:73 0162:54 0163:74 0164:54 0165:74 0166:54 0167:74 0168:55 0169:75 016a:55 016b:75 016c:55 016d:75 016e:55 016f:75 0170:55 0171:75 0172:55 0173:75 0174:57 0175:77 0176:59 0177:79 0178:59 0179:5a 017b:5a 017c:7a 017d:5a 017e:7a 0180:62 0189:44 0197:49 019a:6c 019f:4f 01a0:4f 01a1:6f 01ab:74 01ae:54 01af:55 01b0:75 01b6:7a 01c0:7c 01c3:21 01cd:41 01ce:61 01cf:49 01d0:69 01d1:4f 01d2:6f 01d3:55 01d4:75 01d5:55 01d6:75 01d7:55 01d8:75 01d9:55 01da:75 01db:55 01dc:75 01de:41 01df:61 01e4:47 01e5:67 01e6:47 01e7:67 01e8:4b 01e9:6b 01ea:4f 01eb:6f 01ec:4f 01ed:6f 01f0:6a 0261:67 02b9:27 02ba:22 02bc:27 02c4:5e 02c6:5e 02c8:27 02ca:27 02cb:60 02cd:5f 02dc:7e 0300:60 0301:27 0302:5e 0303:7e 0308:22 030e:22 0327:2c 0331:5f 0332:5f 037e:3b 04bb:68 0589:3a 066a:25 2000:20 2001:20 2002:20 2003:20 2004:20 2005:20 2006:20 2010:2d 2011:2d 2013:2d 2014:2d 2017:5f 2018:60 2019:27 201a:2c 201c:22 201d:22 201e:2c 2020:2b 2022:07 2026:2e 2030:25 2032:27 2035:60 2039:3c 203a:3e 203c:13 2044:2f 2074:34 2075:35 2076:36 2077:37 2078:38 2080:30 2081:31 2082:32 2083:33 2084:34 2085:35 2086:36 2087:37 2088:38 2089:39 20dd:09 2102:43 2107:45 210a:67 210b:48 210c:48 210d:48 210e:68 2110:49 2111:49 2112:4c 2113:6c 2115:4e 2118:50 2119:50 211a:51 211b:52 211c:52 211d:52 2122:54 2124:5a 2128:5a 212a:4b 212c:42 212d:43 212e:65 212f:65 2130:45 2131:46 2133:4d 2134:6f 2190:1b 2191:18 2192:1a 2193:19 2194:1d 2195:12 21a8:17 2212:2d 2215:2f 2216:5c 2217:2a 221f:1c 2223:7c 2236:3a 223c:7e 2302:7f 2303:5e 2329:3c 232a:3e 25ac:16 25b2:1e 25ba:10 25bc:1f 25c4:11 25cb:09 25d8:08 25d9:0a 263a:01 263b:02 263c:0f 2640:0c 2642:0b 2660:06 2663:05 2665:03 2666:04 266a:0d 266b:0e 2758:7c 3000:20 3007:09 3008:3c 3009:3e 301a:5b 301b:5d ff01:21 ff02:22 ff03:23 ff04:24 ff05:25 ff06:26 ff07:27 ff08:28 ff09:29 ff0a:2a ff0b:2b ff0c:2c ff0d:2d ff0e:2e ff0f:2f ff10:30 ff11:31 ff12:32 ff13:33 ff14:34 ff15:35 ff16:36 ff17:37 ff18:38 ff19:39 ff1a:3a ff1b:3b ff1c:3c ff1d:3d ff1e:3e ff20:40 ff21:41 ff22:42 ff23:43 ff24:44 ff25:45 ff26:46 ff27:47 ff28:48 ff29:49 ff2a:4a ff2b:4b ff2c:4c ff2d:4d ff2e:4e ff2f:4f ff30:50 ff31:51 ff32:52 ff33:53 ff34:54 ff35:55 ff36:56 ff37:57 ff38:58 ff39:59 ff3a:5a ff3b:5b ff3c:5c ff3d:5d ff3e:5e ff3f:5f ff40:60 ff41:61 ff42:62 ff43:63 ff44:64 ff45:65 ff46:66 ff47:67 ff48:68 ff49:69 ff4a:6a ff4b:6b ff4c:6c ff4d:6d ff4e:6e ff4f:6f ff50:70 ff51:71 ff52:72 ff53:73 ff54:74 ff55:75 ff56:76 ff57:77 ff58:78 ff59:79 ff5a:7a ff5b:7b ff5c:7c ff5d:7d ff5e:7e 
+The Split-Path cmdlet is designed to work with the data exposed by any provider. To list the providers available in your session, type &quot;Get-PSProvider&quot;. For more information, see about_Providers.
+                        </maml:para>
+		</maml:alert>
+		<maml:alert>
+			<maml:para></maml:para>
+		</maml:alert>
+	</maml:alertSet>
+	<!-- Example section  --> 
+	<command:examples>
 
-500   (IBM EBCDIC - International)
-0004:37 0005:2d 0006:2e 0007:2f 0008:16 0009:05 000a:25 0014:3c 0015:3d 0016:32 0017:26 001a:3f 001b:27 0020:40 0021:4f 0022:7f 0023:7b 0024:5b 0025:6c 0026:50 0027:7d 0028:4d 0029:5d 002a:5c 002b:4e 002c:6b 002d:60 002e:4b 002f:61 003a:7a 003b:5e 003c:4c 003d:7e 003e:6e 003f:6f 0040:7c 005b:4a 005d:5a 005e:5f 005f:6d 0060:79 007f:07 0080:20 0081:21 0082:22 0083:23 0084:24 0085:15 0086:06 0087:17 0088:28 0089:29 008a:2a 008b:2b 008c:2c 008d:09 008e:0a 008f:1b 0090:30 0091:31 0092:1a 0093:33 0094:34 0095:35 0096:36 0097:08 0098:38 0099:39 009a:3a 009b:3b 009c:04 009d:14 009e:3e 00a0:41 00a6:6a 00c0:64 00c1:65 00c2:62 00c3:66 00c4:63 00c5:67 00c7:68 00c8:74 00c9:71 00ca:72 00cb:73 00cc:78 00cd:75 00ce:76 00cf:77 00d1:69 00df:59 00e0:44 00e1:45 00e2:42 00e3:46 00e4:43 00e5:47 00e7:48 00e8:54 00e9:51 00ea:52 00eb:53 00ec:58 00ed:55 00ee:56 00ef:57 00f1:49 00f8:70 ff01:4f ff02:7f ff03:7b ff04:5b ff05:6c ff06:50 ff07:7d ff08:4d ff09:5d ff0a:5c ff0b:4e ff0c:6b ff0d:60 ff0e:4b ff0f:61 ff1a:7a ff1b:5e ff1c:4c ff1d:7e ff1e:6e ff20:7c ff3b:4a ff3d:5a ff3e:5f ff3f:6d ff40:79 
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 1 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+split-path &quot;HKCU:\Software\Microsoft&quot; -qualifier
 
-850   (OEM - Multilingual Latin I)
-0100:41 0101:61 0102:41 0103:61 0104:41 0105:61 0106:43 0107:63 0108:43 0109:63 010a:43 010b:63 010c:43 010d:63 010e:44 010f:64 0110:44 0111:64 0112:45 0113:65 0114:45 0115:65 0116:45 0117:65 0118:45 0119:65 011a:45 011b:65 011c:47 011d:67 011e:47 011f:67 0120:47 0121:67 0122:47 0123:67 0124:48 0125:68 0126:48 0127:68 0128:49 0129:69 012a:49 012b:69 012c:49 012d:69 012e:49 012f:69 0130:49 0134:4a 0135:6a 0136:4b 0137:6b 0139:4c 013a:6c 013b:4c 013c:6c 013d:4c 013e:6c 0141:4c 0142:6c 0143:4e 0144:6e 0145:4e 0146:6e 0147:4e 0148:6e 014c:4f 014d:6f 014e:4f 014f:6f 0150:4f 0151:6f 0152:4f 0153:6f 0154:52 0155:72 0156:52 0157:72 0158:52 0159:72 015a:53 015b:73 015c:53 015d:73 015e:53 015f:73 0160:53 0161:73 0162:54 0163:74 0164:54 0165:74 0166:54 0167:74 0168:55 0169:75 016a:55 016b:75 016c:55 016d:75 016e:55 016f:75 0170:55 0171:75 0172:55 0173:75 0174:57 0175:77 0176:59 0177:79 0178:59 0179:5a 017b:5a 017c:7a 017d:5a 017e:7a 0180:62 0189:44 0197:49 019a:6c 019f:4f 01a0:4f 01a1:6f 01a9:53 01ab:74 01ae:54 01af:55 01b0:75 01b6:5a 01c3:21 01cd:41 01ce:61 01cf:49 01d0:69 01d1:4f 01d2:6f 01d3:55 01d4:75 01d5:55 01d6:75 01d7:55 01d8:75 01d9:55 01da:75 01db:55 01dc:75 01de:41 01df:61 01e4:47 01e5:67 01e6:47 01e7:67 01e8:4b 01e9:6b 01ea:4f 01eb:6f 01ec:4f 01ed:6f 01f0:6a 0261:67 02ba:22 02bc:27 02c4:5e 02c6:5e 02c8:27 02cb:27 02cd:5f 02dc:7e 0300:27 0302:5e 0303:7e 030e:22 0331:5f 0332:5f 037e:3b 0393:47 03a3:53 03a6:46 03a9:4f 03b1:61 03b4:64 03b5:65 03c0:70 03c3:73 03c4:74 03c6:66 04bb:68 0589:3a 066a:25 2000:20 2001:20 2002:20 2003:20 2004:20 2005:20 2006:20 2010:2d 2011:2d 2013:2d 2014:2d 2018:27 2019:27 201a:27 201c:22 201d:22 201e:22 2022:07 2024:07 2026:2e 2030:25 2039:3c 203a:3e 203c:13 2044:2f 2070:30 2074:34 2075:35 2076:36 2077:37 2078:39 207f:6e 2080:30 2084:34 2085:35 2086:36 2087:37 2088:38 2089:39 20a7:50 20dd:4f 2102:43 2107:45 210a:67 210b:48 210c:48 210d:48 210e:68 2110:49 2111:49 2112:4c 2113:6c 2115:4e 2118:50 2119:50 211a:51 211b:52 211c:52 211d:52 2122:54 2124:5a 2126:4f 2128:5a 212a:4b 212c:42 212d:43 212e:65 212f:65 2130:45 2131:46 2133:4d 2134:6f 2190:1b 2191:18 2192:1a 2193:19 2194:1d 2195:12 21a8:17 2211:53 2212:2d 2215:2f 2216:2f 2217:2a 2219:07 221a:56 221e:38 221f:1c 2229:6e 2236:3a 223c:7e 2248:7e 2261:3d 2264:3d 2265:3d 2302:7f 2303:5e 2320:28 2321:29 2329:3c 232a:3e 25ac:16 25b2:1e 25ba:10 25bc:1f 25c4:11 25cb:09 25d8:08 25d9:0a 263a:01 263b:02 263c:0f 2640:0c 2642:0b 2660:06 2663:05 2665:03 2666:04 266a:0d 266b:0e 2713:56 3000:20 3007:4f 3008:3c 3009:3e 301a:5b 301b:5d ff01:21 ff02:22 ff03:23 ff04:24 ff05:25 ff06:26 ff07:27 ff08:28 ff09:29 ff0a:2a ff0b:2b ff0c:2c ff0d:2d ff0e:2e ff0f:2f ff10:30 ff11:31 ff12:32 ff13:33 ff14:34 ff15:35 ff16:36 ff17:37 ff18:38 ff19:39 ff1a:3a ff1b:3b ff1c:3c ff1d:3d ff1e:3e ff20:40 ff21:41 ff22:42 ff23:43 ff24:44 ff25:45 ff26:46 ff27:47 ff28:48 ff29:49 ff2a:4a ff2b:4b ff2c:4c ff2d:4d ff2e:4e ff2f:4f ff30:50 ff31:51 ff32:52 ff33:53 ff34:54 ff35:55 ff36:56 ff37:57 ff38:58 ff39:59 ff3a:5a ff3b:5b ff3c:5c ff3d:5d ff3e:5e ff3f:5f ff40:60 ff41:61 ff42:62 ff43:63 ff44:64 ff45:65 ff46:66 ff47:67 ff48:68 ff49:69 ff4a:6a ff4b:6b ff4c:6c ff4d:6d ff4e:6e ff4f:6f ff50:70 ff51:71 ff52:72 ff53:73 ff54:74 ff55:75 ff56:76 ff57:77 ff58:78 ff59:79 ff5a:7a ff5b:7b ff5c:7c ff5d:7d ff5e:7e 
+HKCU:                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>This command returns only the qualifier (the drive) of the path.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
 
-860   (OEM - Portuguese)
-00a4:0f 00a5:59 00a7:15 00a8:22 00a9:63 00ad:5f 00ae:72 00af:16 00b3:33 00b4:2f 00b6:14 00b8:2c 00b9:31 00be:33 00c4:41 00c5:41 00c6:41 00cb:45 00ce:49 00cf:49 00d0:44 00d6:4f 00d7:58 00d8:4f 00db:55 00dd:59 00de:54 00e4:61 00e5:61 00e6:61 00eb:65 00ee:69 00ef:69 00f0:64 00f6:6f 00f8:6f 00fb:75 00fd:79 00fe:74 00ff:79 0100:41 0101:61 0102:41 0103:61 0104:41 0105:61 0106:43 0107:63 0108:43 0109:63 010a:43 010b:63 010c:43 010d:63 010e:44 010f:64 0110:44 0111:64 0112:45 0113:65 0114:45 0115:65 0116:45 0117:65 0118:45 0119:65 011a:45 011b:65 011c:47 011d:67 011e:47 011f:67 0120:47 0121:67 0122:47 0123:67 0124:48 0125:68 0126:48 0127:68 0128:49 0129:69 012a:49 012b:69 012c:49 012d:69 012e:49 012f:69 0130:49 0131:69 0134:4a 0135:6a 0136:4b 0137:6b 0139:4c 013a:6c 013b:4c 013c:6c 013d:4c 013e:6c 0141:4c 0142:6c 0143:4e 0144:6e 0145:4e 0146:6e 0147:4e 0148:6e 014c:4f 014d:6f 014e:4f 014f:6f 0150:4f 0151:6f 0152:4f 0153:6f 0154:52 0155:72 0156:52 0157:72 0158:52 0159:72 015a:53 015b:73 015c:53 015d:73 015e:53 015f:73 0160:5c 0161:7c 0162:54 0163:74 0164:54 0165:74 0166:54 0167:74 0168:55 0169:75 016a:55 016b:75 016c:55 016d:75 016e:55 016f:75 0170:55 0171:75 0172:55 0173:75 0174:57 0175:77 0176:59 0177:79 0178:59 0179:5a 017b:5a 017c:7a 017d:5a 017e:7a 0180:62 0189:44 0191:46 0192:66 0197:49 019a:6c 019f:4f 01a0:4f 01a1:6f 01ab:74 01ae:54 01af:55 01b0:75 01b6:7a 01c0:7c 01c3:21 01cd:41 01ce:61 01cf:49 01d0:69 01d1:4f 01d2:6f 01d3:55 01d4:75 01d5:55 01d6:75 01d7:55 01d8:75 01d9:55 01da:75 01db:55 01dc:75 01de:41 01df:61 01e4:47 01e5:67 01e6:47 01e7:67 01e8:4b 01e9:6b 01ea:4f 01eb:6f 01ec:4f 01ed:6f 01f0:6a 0261:67 0278:66 02b9:27 02ba:22 02bc:27 02c4:5e 02c6:5e 02c8:27 02c9:16 02ca:2f 02cb:60 02cd:5f 02dc:7e 0300:60 0301:2f 0302:5e 0303:7e 0304:16 0305:16 0308:22 030e:22 0327:2c 0331:5f 0332:5f 037e:3b 04bb:68 0589:3a 066a:25 2000:20 2001:20 2002:20 2003:20 2004:20 2005:20 2006:20 2010:5f 2011:5f 2013:5f 2014:5f 2017:5f 2018:27 2019:27 201a:2c 201c:22 201d:22 201e:22 2022:07 2024:07 2026:2e 2030:25 2032:27 2035:60 2039:3c 203a:3e 203c:13 2044:2f 2070:30 2074:34 2075:35 2076:36 2077:37 2078:38 2080:30 2081:31 2083:33 2084:34 2085:35 2086:36 2087:37 2088:38 2089:39 20dd:4f 2102:43 2107:45 210a:67 210b:48 210c:48 210d:48 210e:68 2110:49 2111:49 2112:4c 2113:6c 2115:4e 2118:70 2119:50 211a:51 211b:52 211c:52 211d:52 2122:74 2124:5a 2128:5a 212a:4b 212b:41 212c:42 212d:43 212e:65 212f:65 2130:45 2131:46 2133:4d 2134:6f 2190:1b 2191:18 2192:1a 2193:19 2194:1d 2195:12 21a8:17 2205:4f 2212:5f 2215:2f 2216:5c 2217:2a 221f:1c 2223:7c 2236:3a 223c:7e 22c5:07 2302:7f 2303:5e 2329:3c 232a:3e 25ac:16 25b2:1e 25ba:10 25bc:1f 25c4:11 25cb:09 25d8:08 25d9:0a 263a:01 263b:02 263c:0f 2640:0c 2642:0b 2660:06 2663:05 2665:03 2666:04 266a:0d 266b:0e 3000:20 3007:4f 3008:3c 3009:3e 301a:5b 301b:5d 30fb:07 
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 2 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+split-path &quot;C:\Test\Logs\*.log&quot; -leaf -resolve
 
-861   (OEM - Icelandic)
-00a2:63 00a4:0f 00a5:59 00a7:15 00a8:22 00a9:63 00aa:61 00ad:5f 00ae:72 00af:16 00b3:33 00b4:2f 00b6:14 00b8:2c 00b9:31 00ba:6f 00be:33 00c0:41 00c2:41 00c3:41 00c8:45 00ca:45 00cb:45 00cc:49 00ce:49 00cf:49 00d1:4e 00d2:4f 00d4:4f 00d5:4f 00d7:58 00d9:55 00db:55 00e3:61 00ec:69 00ee:69 00ef:69 00f1:6e 00f2:6f 00f5:6f 00f9:75 00ff:79 0100:41 0101:61 0102:41 0103:61 0104:41 0105:61 0106:43 0107:63 0108:43 0109:63 010a:43 010b:63 010c:43 010d:63 010e:44 010f:64 0111:64 0112:45 0113:65 0114:45 0115:65 0116:45 0117:65 0118:45 0119:65 011a:45 011b:65 011c:47 011d:67 011e:47 011f:67 0120:47 0121:67 0122:47 0123:67 0124:48 0125:68 0126:48 0127:68 0128:49 0129:69 012a:49 012b:69 012c:49 012d:69 012e:49 012f:69 0130:49 0131:69 0134:4a 0135:6a 0136:4b 0137:6b 0139:4c 013a:6c 013b:4c 013c:6c 013d:4c 013e:6c 0141:4c 0142:6c 0143:4e 0144:6e 0145:4e 0146:6e 0147:4e 0148:6e 014c:4f 014d:6f 014e:4f 014f:6f 0150:4f 0151:6f 0152:4f 0153:6f 0154:52 0155:72 0156:52 0157:72 0158:52 0159:72 015a:53 015b:73 015c:53 015d:73 015e:53 015f:73 0160:53 0161:73 0162:54 0163:74 0164:54 0165:74 0166:54 0167:74 0168:55 0169:75 016a:55 016b:75 016c:55 016d:75 016e:55 016f:75 0170:55 0171:75 0172:55 0173:75 0174:57 0175:77 0176:59 0177:79 0178:59 0179:5a 017b:5a 017c:7a 017d:5a 017e:7a 0180:62 0197:49 019a:6c 019f:4f 01a0:4f 01a1:6f 01ab:74 01ae:54 01af:55 01b0:75 01b6:7a 01c3:21 01cd:41 01ce:61 01cf:49 01d0:69 01d1:4f 01d2:6f 01d3:55 01d4:75 01d5:55 01d6:75 01d7:55 01d8:75 01d9:55 01da:75 01db:55 01dc:75 01de:41 01df:61 01e4:47 01e5:67 01e6:47 01e7:67 01e8:4b 01e9:6b 01ea:4f 01eb:6f 01ec:4f 01ed:6f 01f0:6a 0261:67 0278:66 02b9:27 02ba:22 02bc:27 02c4:5e 02c6:5e 02c8:27 02c9:16 02ca:2f 02cb:60 02cd:5f 02dc:7e 0300:60 0301:2f 0302:5e 0303:7e 0304:16 0305:16 0308:22 030e:22 0327:2c 0331:5f 0332:5f 037e:3b 04bb:68 0589:3a 066a:25 2000:20 2001:20 2002:20 2003:20 2004:20 2005:20 2006:20 2010:2d 2011:2d 2013:2d 2014:2d 2017:5f 2018:27 2019:27 201a:27 201c:22 201d:22 201e:22 2022:07 2024:07 2026:07 2030:25 2032:27 2035:27 2039:3c 203a:3e 203c:13 2044:2f 2070:30 2074:34 2075:35 2076:36 2077:37 2078:38 2080:30 2081:31 2083:33 2084:34 2085:35 2086:36 2087:37 2088:38 2089:39 20dd:4f 2102:43 2107:45 210a:67 210b:48 210c:48 210d:48 210e:68 2110:49 2111:49 2112:4c 2113:6c 2115:4e 2118:70 2119:50 211a:51 211b:52 211c:52 211d:52 2122:74 2124:5a 2128:5a 212a:4b 212c:42 212d:43 212e:65 212f:65 2130:45 2131:46 2133:4d 2134:6f 2190:1b 2191:18 2192:1a 2193:19 2194:1d 2195:12 21a8:17 2205:4f 2212:5f 2215:2f 2216:5c 2217:2a 221f:1c 2223:7c 2236:3a 223c:7e 22c5:07 2302:7f 2303:5e 2329:3c 232a:3e 25ac:16 25b2:1e 25ba:10 25bc:1f 25c4:11 25cb:09 25d8:08 25d9:0a 263a:01 263b:02 263c:0f 2640:0c 2642:0b 2660:06 2663:05 2665:03 2666:04 266a:0d 266b:0e 3000:20 3007:4f 3008:3c 3009:3e 301a:5b 301b:5d 30fb:07 
+Pass1.log
+Pass2.log
+...                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>This command displays the files that are referenced by the split path. Because this path is split to the last item (the &quot;leaf&quot;), only the file names of the paths are displayed. 
 
-863   (OEM - Canadian French)
-00a1:21 00a5:59 00a9:63 00aa:61 00ad:16 00ae:72 00b9:33 00ba:6f 00c1:41 00c3:41 00c4:41 00c5:41 00c6:41 00cc:49 00cd:49 00d0:44 00d1:4e 00d2:4f 00d3:4f 00d5:4f 00d6:4f 00d7:58 00d8:4f 00da:55 00dd:59 00de:54 00e1:61 00e3:61 00e4:61 00e5:61 00e6:61 00ec:69 00ed:69 00f0:64 00f1:6e 00f2:6f 00f5:6f 00f6:6f 00f8:6f 00fd:79 00fe:74 00ff:79 0100:41 0101:61 0102:41 0103:61 0104:41 0105:61 0106:43 0107:63 0108:43 0109:63 010a:43 010b:63 010c:43 010d:63 010e:44 010f:64 0110:44 0111:64 0112:45 0113:65 0114:45 0115:65 0116:45 0117:65 0118:45 0119:65 011a:45 011b:65 011c:47 011d:67 011e:47 011f:67 0120:47 0121:67 0122:47 0123:67 0124:48 0125:68 0126:48 0127:68 0128:49 0129:69 012a:49 012b:69 012c:49 012d:69 012e:49 012f:69 0130:49 0131:69 0134:4a 0135:6a 0136:4b 0137:6b 0139:4c 013a:6c 013b:4c 013c:6c 013d:4c 013e:6c 0141:4c 0142:6c 0143:4e 0144:6e 0145:4e 0146:6e 0147:4e 0148:6e 014c:4f 014d:6f 014e:4f 014f:6f 0150:4f 0151:6f 0152:4f 0153:6f 0154:52 0155:72 0156:52 0157:72 0158:52 0159:72 015a:53 015b:73 015c:53 015d:73 015e:53 015f:73 0160:53 0161:73 0162:54 0163:74 0164:54 0165:74 0166:54 0167:74 0168:55 0169:75 016a:55 016b:75 016c:55 016d:75 016e:55 016f:75 0170:55 0171:75 0172:55 0173:75 0174:57 0175:77 0176:59 0177:79 0178:59 0179:5a 017b:5a 017c:7a 017d:5a 017e:7a 0180:62 0189:44 0197:49 019a:6c 019f:4f 01a0:4f 01a1:6f 01ab:74 01ae:54 01af:55 01b0:75 01b6:7a 01c3:21 01cd:41 01ce:61 01cf:49 01d0:69 01d1:4f 01d2:6f 01d3:55 01d4:75 01d5:55 01d6:75 01d7:55 01d8:75 01d9:55 01da:75 01db:55 01dc:75 01de:41 01df:61 01e4:47 01e5:67 01e6:47 01e7:67 01e8:4b 01e9:6b 01ea:4f 01eb:6f 01ec:4f 01ed:6f 01f0:6a 0261:67 02b9:22 02ba:27 02bc:27 02c4:5e 02c6:5e 02c8:27 02c9:16 02cb:60 02cd:5f 02dc:7e 0300:60 0302:5e 0303:7e 0304:16 0305:16 0331:5f 0332:5f 037e:3b 04bb:68 0589:3a 066a:25 2000:20 2001:20 2002:20 2003:20 2004:20 2005:20 2006:20 2010:2d 2011:2d 2013:2d 2014:2d 2018:27 2019:27 201a:27 201c:22 201d:22 201e:22 2022:07 2024:07 2026:07 2030:25 2032:27 2035:27 2039:3c 203a:3e 203c:13 2044:2f 2070:30 2074:34 2075:35 2076:36 2077:37 2078:38 2080:30 2081:31 2084:34 2085:35 2086:36 2087:37 2088:38 2089:39 20a7:50 20dd:4f 2102:43 2107:45 210a:67 210b:48 210c:48 210d:48 210e:68 2110:49 2111:49 2112:4c 2113:6c 2115:4e 2118:70 2119:50 211a:51 211b:52 211c:52 211d:52 2122:74 2124:5a 2128:5a 212a:4b 212b:41 212c:42 212d:43 212e:65 212f:65 2130:45 2131:46 2133:4d 2134:6f 2190:1b 2191:18 2192:1a 2193:19 2194:1d 2195:12 21a8:17 2205:4f 2212:5f 2215:2f 2216:5c 2217:2a 221f:1c 2223:7c 2236:3a 223c:7e 22c5:07 2302:7f 2303:5e 2329:3c 232a:3e 25ac:16 25b2:1e 25ba:10 25bc:1f 25c4:11 25cb:09 25d8:08 25d9:0a 263a:01 263b:02 263c:0f 2640:0c 2642:0b 2660:06 2663:05 2665:03 2666:04 266a:0d 266b:0e 3000:20 3007:4f 3008:3c 3009:3e 301a:5b 301b:5d 30fb:07 
+The Resolve parameter tells Split-Path to display the items that the split path references, instead of displaying the split path.
 
-865   (OEM - Nordic)
-00a2:63 00a5:59 00a7:15 00a8:22 00a9:63 00ad:5f 00ae:72 00af:16 00b3:33 00b4:2f 00b6:14 00b8:2c 00b9:31 00bb:3e 00be:33 00c0:41 00c1:41 00c2:41 00c3:41 00c8:45 00ca:45 00cb:45 00cc:49 00cd:49 00ce:49 00cf:49 00d0:44 00d2:4f 00d3:4f 00d4:4f 00d5:4f 00d7:58 00d9:55 00da:55 00db:55 00dd:59 00de:54 00e3:61 00f0:64 00f5:6f 00fd:79 00fe:74 0100:41 0101:61 0102:41 0103:61 0104:41 0105:61 0106:43 0107:63 0108:43 0109:63 010a:43 010b:63 010c:43 010d:63 010e:44 010f:64 0110:44 0111:64 0112:45 0113:65 0114:45 0115:65 0116:45 0117:65 0118:45 0119:65 011a:45 011b:65 011c:47 011d:67 011e:47 011f:67 0120:47 0121:67 0122:47 0123:67 0124:48 0125:68 0126:48 0127:68 0128:49 0129:69 012a:49 012b:69 012c:49 012d:69 012e:49 012f:69 0130:49 0131:69 0134:4a 0135:6a 0136:4b 0137:6b 0139:4c 013a:6c 013b:4c 013c:6c 013d:4c 013e:6c 0141:4c 0142:6c 0143:4e 0144:6e 0145:4e 0146:6e 0147:4e 0148:6e 014c:4f 014d:6f 014e:4f 014f:6f 0150:4f 0151:6f 0152:4f 0153:6f 0154:52 0155:72 0156:52 0157:72 0158:52 0159:72 015a:53 015b:73 015c:53 015d:73 015e:53 015f:73 0160:53 0161:73 0162:54 0163:74 0164:54 0165:74 0166:54 0167:74 0168:55 0169:75 016a:55 016b:75 016c:55 016d:75 016e:55 016f:75 0170:55 0171:75 0172:55 0173:75 0174:57 0175:77 0176:59 0177:79 0178:59 0179:5a 017b:5a 017c:7a 017d:5a 017e:7a 0180:62 0189:44 0197:49 019a:6c 019f:4f 01a0:4f 01a1:6f 01ab:74 01ae:54 01af:55 01b0:75 01b6:7a 01c3:21 01cd:41 01ce:61 01cf:49 01d0:69 01d1:4f 01d2:6f 01d3:55 01d4:75 01d5:55 01d6:75 01d7:55 01d8:75 01d9:55 01da:75 01db:55 01dc:75 01de:41 01df:61 01e4:47 01e5:67 01e6:47 01e7:67 01e8:4b 01e9:6b 01ea:4f 01eb:6f 01ec:4f 01ed:6f 01f0:6a 0261:67 02b9:27 02ba:22 02bc:27 02c4:5e 02c6:5e 02c8:27 02c9:16 02ca:2f 02cb:60 02cd:5f 02dc:7e 0300:60 0301:2f 0302:5e 0303:7e 0304:16 0305:16 0308:22 030e:22 0327:2c 0331:5f 0332:5f 037e:3b 04bb:68 0589:3a 066a:25 2000:20 2001:20 2002:20 2003:20 2004:20 2005:20 2006:20 2010:2d 2011:2d 2013:2d 2014:2d 2017:5f 2018:27 2019:27 201a:27 201c:22 201d:22 201e:22 2022:07 2024:07 2026:07 2030:25 2032:27 2035:27 2039:3c 203a:3e 203c:13 2044:2f 2070:30 2074:34 2075:35 2076:36 2077:37 2078:38 2080:30 2081:31 2083:33 2084:34 2085:35 2086:36 2087:37 2088:38 2089:39 20dd:4f 2102:43 2107:45 210a:67 210b:48 210c:48 210d:48 210e:68 2110:49 2111:49 2112:4c 2113:6c 2115:4e 2118:70 2119:50 211a:51 211b:52 211c:52 211d:52 2122:74 2124:5a 2128:5a 212a:4b 212c:42 212d:43 212e:65 212f:65 2130:45 2131:46 2133:4d 2134:6f 2190:1b 2191:18 2192:1a 2193:19 2194:1d 2195:12 21a8:17 2205:4f 2212:5f 2215:2f 2216:5c 2217:2a 221f:1c 2223:7c 2236:3a 223c:7e 226b:3c 22c5:07 2302:7f 2303:5e 2329:3c 232a:3e 25ac:16 25b2:1e 25ba:10 25bc:1f 25c4:11 25cb:09 25d8:08 25d9:0a 263a:01 263b:02 263c:0f 2640:0c 2642:0b 2660:06 2663:05 2665:03 2666:04 266a:0d 266b:0e 3000:20 3007:4f 3008:3c 3009:3e 300b:3e 301a:5b 301b:5d 30fb:07 
+Like all Split-Path commands, this command returns strings. It does not return FileInfo Objects representing the files.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
 
-874   (ANSI/OEM - Thai)
-00a7:15 00b6:14 203c:13 2190:1b 2191:18 2192:1a 2193:19 2194:1d 2195:12 21a8:17 221f:1c 2302:7f 25ac:16 25b2:1e 25ba:10 25bc:1f 25c4:11 25cb:09 25d8:08 25d9:0a 263a:01 263b:02 263c:0f 2640:0c 2642:0b 2660:06 2663:05 2665:03 2666:04 266a:0d 266b:0e ff01:21 ff02:22 ff03:23 ff04:24 ff05:25 ff06:26 ff07:27 ff08:28 ff09:29 ff0a:2a ff0b:2b ff0c:2c ff0d:2d ff0e:2e ff0f:2f ff10:30 ff11:31 ff12:32 ff13:33 ff14:34 ff15:35 ff16:36 ff17:37 ff18:38 ff19:39 ff1a:3a ff1b:3b ff1c:3c ff1d:3d ff1e:3e ff20:40 ff21:41 ff22:42 ff23:43 ff24:44 ff25:45 ff26:46 ff27:47 ff28:48 ff29:49 ff2a:4a ff2b:4b ff2c:4c ff2d:4d ff2e:4e ff2f:4f ff30:50 ff31:51 ff32:52 ff33:53 ff34:54 ff35:55 ff36:56 ff37:57 ff38:58 ff39:59 ff3a:5a ff3b:5b ff3c:5c ff3d:5d ff3e:5e ff3f:5f ff40:60 ff41:61 ff42:62 ff43:63 ff44:64 ff45:65 ff46:66 ff47:67 ff48:68 ff49:69 ff4a:6a ff4b:6b ff4c:6c ff4d:6d ff4e:6e ff4f:6f ff50:70 ff51:71 ff52:72 ff53:73 ff54:74 ff55:75 ff56:76 ff57:77 ff58:78 ff59:79 ff5a:7a ff5b:7b ff5c:7c ff5d:7d ff5e:7e 
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 3 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+split-path &quot;C:\WINDOWS\system32\WindowsPowerShell\V1.0\about_*.txt&quot;
 
-932   (ANSI/OEM - Japanese Shift-JIS)
-00a1:21 00a5:5c 00a6:7c 00a9:63 00aa:61 00ad:2d 00ae:52 00b2:32 00b3:33 00b9:31 00ba:6f 00c0:41 00c1:41 00c2:41 00c3:41 00c4:41 00c5:41 00c6:41 00c7:43 00c8:45 00c9:45 00ca:45 00cb:45 00cc:49 00cd:49 00ce:49 00cf:49 00d0:44 00d1:4e 00d2:4f 00d3:4f 00d4:4f 00d5:4f 00d6:4f 00d8:4f 00d9:55 00da:55 00db:55 00dc:55 00dd:59 00de:54 00df:73 00e0:61 00e1:61 00e2:61 00e3:61 00e4:61 00e5:61 00e6:61 00e7:63 00e8:65 00e9:65 00ea:65 00eb:65 00ec:69 00ed:69 00ee:69 00ef:69 00f0:64 00f1:6e 00f2:6f 00f3:6f 00f4:6f 00f5:6f 00f6:6f 00f8:6f 00f9:75 00fa:75 00fb:75 00fc:75 00fd:79 00fe:74 00ff:79 
+C:\WINDOWS\system32\WindowsPowerShell\V1.0                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>This command returns only the parent containers of the path. Because it does not include any parameters to specify the split, Split-Path uses the split location default, which is Parent.</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
 
-936   (ANSI/OEM - Simplified Chinese GBK)
-00a6:7c 00aa:61 00ad:2d 00b2:32 00b3:33 00b9:31 00ba:6f 00d0:44 00dd:59 00de:54 00e2:61 00f0:65 00fd:79 00fe:74 
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 4 --------------------------
+			</maml:title> 
+			<maml:introduction>
+				<maml:para>C:\PS&gt;</maml:para>
+			</maml:introduction> 
+  			<dev:code>
+split-path &quot;.\My Pictures\*.jpg&quot; -IsAbsolute
 
-949   (ANSI/OEM - Korean)
-00a6:7c 00c0:41 00c1:41 00c2:41 00c3:41 00c4:41 00c5:41 00c7:43 00c8:45 00c9:45 00ca:45 00cb:45 00cc:49 00cd:49 00ce:49 00cf:49 00d1:4e 00d2:4f 00d3:4f 00d4:4f 00d5:4f 00d6:4f 00d9:55 00da:55 00db:55 00dc:55 00dd:59 00e0:61 00e1:61 00e2:61 00e3:61 00e4:61 00e5:61 00e7:63 00e8:65 00e9:65 00ea:65 00eb:65 00ec:69 00ed:69 00ee:69 00ef:69 00f1:6e 00f2:6f 00f3:6f 00f4:6f 00f5:6f 00f6:6f 00f9:75 00fa:75 00fb:75 00fc:75 00fd:79 00ff:79 20a9:5c 
+False                        </dev:code>
+       			<dev:remarks>
+                                <maml:para>Description</maml:para>
+                                <maml:para>-----------</maml:para>
+  			        <maml:para>This command determines whether the path is relative or absolute. In this case, because the path is relative to the current directory, which is represented by a dot (.), it returns FALSE ($false).</maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+	                        <maml:para></maml:para>
+  			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText></command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
 
-950   (ANSI/OEM - Traditional Chinese Big5)
-00a1:21 00a6:7c 00a9:63 00aa:61 00ad:2d 00ae:52 00b2:32 00b3:33 00b9:31 00ba:6f 00c0:41 00c1:41 00c2:41 00c3:41 00c4:41 00c5:41 00c6:41 00c7:43 00c8:45 00c9:45 00ca:45 00cb:45 00cc:49 00cd:49 00ce:49 00cf:49 00d0:44 00d1:4e 00d2:4f 00d3:4f 00d4:4f 00d5:4f 00d6:4f 00d8:4f 00d9:55 00da:55 00db:55 00dc:55 00dd:59 00de:54 00df:73 00e0:61 00e1:61 00e2:61 00e3:61 00e4:61 00e5:61 00e6:61 00e7:63 00e8:65 00e9:65 00ea:65 00eb:65 00ec:69 00ed:69 00ee:69 00ef:69 00f0:65 00f1:6e 00f2:6f 00f3:6f 00f4:6f 00f5:6f 00f6:6f 00f8:6f 00f9:75 00fa:75 00fb:75 00fc:75 00fd:79 00fe:74 00ff:79 
-
-65000 (UTF-7)
-
-
-65001 (UTF-8)
-
-
+		<command:example>
+			<maml:title>
+				-------------------------- EXAMPLE 5 --------------------------
+			</maml:title> 
+		

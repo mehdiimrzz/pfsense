@@ -377,19 +377,19 @@ function snort_update_status($msg) {
 // 	}
 // }
 
-function snort_untar($mode, $tarFile, $outputFolder = null, $extra = null){
-	$cmd = "/usr/bin/tar {$mode} {$tarFile}";
-	if($outputFolder != null) $cmd .= " -C {$outputFolder}";
-	if($extra != null) $cmd .= " {$extra}";
-	exec($cmd, $output, $ret);
-	$success = $ret === 0;
-	if(!$success) {
-		$err_msg = gettext("Failed to extract a rules-update archive. Some snort rules might still be out-of-date. Make sure there is enough free disk space and try again. Tar file:") . $tarFile;
-		error_log('\t' . $err_msg . '\n', 3, SNORT_RULES_UPD_LOGFILE);
-		syslog(LOG_ERR, '[Snort] ' . $err_msg);
-	}
-	return $success;
-}
+// function snort_untar($mode, $tarFile, $outputFolder = null, $extra = null){
+// 	$cmd = "/usr/bin/tar {$mode} {$tarFile}";
+// 	if($outputFolder != null) $cmd .= " -C {$outputFolder}";
+// 	if($extra != null) $cmd .= " {$extra}";
+// 	exec($cmd, $output, $ret);
+// 	$success = $ret === 0;
+// 	if(!$success) {
+// 		$err_msg = gettext("Failed to extract a rules-update archive. Some snort rules might still be out-of-date. Make sure there is enough free disk space and try again. Tar file:") . $tarFile;
+// 		error_log('\t' . $err_msg . '\n', 3, SNORT_RULES_UPD_LOGFILE);
+// 		syslog(LOG_ERR, '[Snort] ' . $err_msg);
+// 	}
+// 	return $success;
+// }
 
 function snort_copy($srcFilePathPattern, $destPath){
 	$cmd = "/bin/cp {$srcFilePathPattern} {$destPath}";
@@ -498,219 +498,218 @@ $update_errors = false;
 /* Untar Snort rules file to tmp and install the rules */
 if ($snortdownload == 'on') {
 	// if (file_exists("{$tmpfname}/{$snort_filename}")) {
-		snort_update_status(gettext("Installing Snort Subscriber ruleset..."));
+	snort_update_status(gettext("Installing Snort Subscriber ruleset..."));
 
 		/* Determine the platform FreeBSD major version so we can unpack  */
 		/* the corresponding SO rules. Default to FreeBSD-11.             */
-		$freebsd_version_so = 'FreeBSD-11';
-		$major_os_ver = strcspn(php_uname('r'), ".-");
-		if ($major_os_ver > 0) {
-			$freebsd_version_so = 'FreeBSD-' . substr(php_uname('r'), 0, $major_os_ver);
-		}
+	$freebsd_version_so = 'FreeBSD-11';
+	$major_os_ver = strcspn(php_uname('r'), ".-");
+	if ($major_os_ver > 0) {
+		$freebsd_version_so = 'FreeBSD-' . substr(php_uname('r'), 0, $major_os_ver);
+	}
 
 		/* Remove the old Snort rules files */
-		$vrt_prefix = VRT_FILE_PREFIX;
-		unlink_if_exists("{$snortdir}/rules/{$vrt_prefix}*.rules");
+	$vrt_prefix = VRT_FILE_PREFIX;
+	unlink_if_exists("{$snortdir}/rules/{$vrt_prefix}*.rules");
 
-		error_log(gettext("\tExtracting and installing Snort Subscriber Ruleset...\n"), 3, SNORT_RULES_UPD_LOGFILE);
+	error_log(gettext("\tExtracting and installing Snort Subscriber Ruleset...\n"), 3, SNORT_RULES_UPD_LOGFILE);
 
-		/* extract snort.org rules and add VRT_FILE_PREFIX prefix to all snort.org files */
-		safe_mkdir("{$tmpfname}/snortrules");
-		// if(snort_untar("xzf", "{$tmpfname}/{$snort_filename}", "{$tmpfname}/snortrules", "rules/")) {
-			$files = glob("{$tmpfname}/snortrules/rules/*.rules");
-			foreach ($files as $file) {
-				$newfile = basename($file);
-				@copy($file, "{$snortdir}/rules/" . VRT_FILE_PREFIX . "{$newfile}");
-			}
+	/* extract snort.org rules and add VRT_FILE_PREFIX prefix to all snort.org files */
+	safe_mkdir("{$tmpfname}/snortrules");
+	// if(snort_untar("xzf", "{$tmpfname}/{$snort_filename}", "{$tmpfname}/snortrules", "rules/")) {
+	$files = glob("{$tmpfname}/snortrules/rules/*.rules");
+	foreach ($files as $file) {
+		$newfile = basename($file);
+		@copy($file, "{$snortdir}/rules/" . VRT_FILE_PREFIX . "{$newfile}");
+	}
 			/* Extract any IP lists */
-			$files = glob("{$tmpfname}/snortrules/rules/*.txt");
-			foreach ($files as $file) {
-				$newfile = basename($file);
-				@copy($file, "{$snortdir}/rules/{$newfile}");
-			}
+	$files = glob("{$tmpfname}/snortrules/rules/*.txt");
+	foreach ($files as $file) {
+		$newfile = basename($file);
+		@copy($file, "{$snortdir}/rules/{$newfile}");
+	}
 		// }
 		// rmdir_recursive("{$tmpfname}/snortrules");
 
 		/* Extract the Snort preprocessor rules */
 		// if(snort_untar("xzf", "{$tmpfname}/{$snort_filename}", "{$tmpfname}", "preproc_rules/")) {
-			$files = glob("{$tmpfname}/preproc_rules/*.rules");
-			foreach ($files as $file) {
-				$newfile = basename($file);
-				@copy($file, "{$snortdir}/preproc_rules/{$newfile}");
-			}
+	$files = glob("{$tmpfname}/preproc_rules/*.rules");
+	foreach ($files as $file) {
+		$newfile = basename($file);
+		@copy($file, "{$snortdir}/preproc_rules/{$newfile}");
+	}
 		// }
 		// rmdir_recursive("{$tmpfname}/preproc_rules");
 
 		/* extract so rules */
 		error_log(gettext("\tUsing Snort Subscriber precompiled SO rules for {$freebsd_version_so} ...\n"), 3, SNORT_RULES_UPD_LOGFILE);
-		$snort_arch = php_uname("m");
-		$nosorules = false;
-		if ($snort_arch  == 'i386'){
-			if(snort_untar("xzf", "{$tmpfname}/{$snort_filename}", "{$tmpfname}", "so_rules/precompiled/{$freebsd_version_so}/i386/{$snort_version}/")) {
-				snort_copy("{$tmpfname}/so_rules/precompiled/{$freebsd_version_so}/i386/{$snort_version}/*.so", "{$snortlibdir}/snort_dynamicrules/");
-			}
-		} elseif ($snort_arch == 'amd64') {
-			if(snort_untar("xzf", "{$tmpfname}/{$snort_filename}", "{$tmpfname}", "so_rules/precompiled/{$freebsd_version_so}/x86-64/{$snort_version}/")) {
-				snort_copy("{$tmpfname}/so_rules/precompiled/{$freebsd_version_so}/x86-64/{$snort_version}/*.so", "{$snortlibdir}/snort_dynamicrules/");
-			}
-		} else
-			$nosorules = true;
+	$snort_arch = php_uname("m");
+	$nosorules = false;
+	if ($snort_arch  == 'i386'){
+			// if(snort_untar("xzf", "{$tmpfname}/{$snort_filename}", "{$tmpfname}", "so_rules/precompiled/{$freebsd_version_so}/i386/{$snort_version}/")) {
+		snort_copy("{$tmpfname}/so_rules/precompiled/{$freebsd_version_so}/i386/{$snort_version}/*.so", "{$snortlibdir}/snort_dynamicrules/");
+			// }
+	} elseif ($snort_arch == 'amd64') {
+			// if(snort_untar("xzf", "{$tmpfname}/{$snort_filename}", "{$tmpfname}", "so_rules/precompiled/{$freebsd_version_so}/x86-64/{$snort_version}/")) {
+		snort_copy("{$tmpfname}/so_rules/precompiled/{$freebsd_version_so}/x86-64/{$snort_version}/*.so", "{$snortlibdir}/snort_dynamicrules/");
+			// }
+	} else
+		$nosorules = true;
 		// rmdir_recursive("{$tmpfname}/so_rules/");
 
-		if ($nosorules == false) {
+	if ($nosorules == false) {
 			/* extract Shared Object stub rules, rename and copy to the rules folder. */
 			// if(snort_untar("xzf", "{$tmpfname}/{$snort_filename}", "{$tmpfname}", "--exclude precompiled/ --exclude src/ so_rules/")) {
-				$files = glob("{$tmpfname}/so_rules/*.rules");
-				foreach ($files as $file) {
-					$newfile = basename($file, ".rules");
-					@copy($file, "{$snortdir}/rules/" . VRT_FILE_PREFIX . "{$newfile}.so.rules");
-				}
+		$files = glob("{$tmpfname}/so_rules/*.rules");
+		foreach ($files as $file) {
+			$newfile = basename($file, ".rules");
+			@copy($file, "{$snortdir}/rules/" . VRT_FILE_PREFIX . "{$newfile}.so.rules");
+		}
 			// }
 			// rmdir_recursive("{$tmpfname}/so_rules/");
-		}
+	}
 		/* extract base etc files */
 		// if(snort_untar("xzf", "{$tmpfname}/{$snort_filename}", "{$tmpfname}", "etc/")) {
-			foreach (array("classification.config", "reference.config", "gen-msg.map", "unicode.map") as $file) {
-				if (file_exists("{$tmpfname}/etc/{$file}"))
-					@copy("{$tmpfname}/etc/{$file}", "{$tmpfname}/VRT_{$file}");
-			}
+	foreach (array("classification.config", "reference.config", "gen-msg.map", "unicode.map") as $file) {
+		// if (file_exists("{$tmpfname}/etc/{$file}"))
+		@copy("{$tmpfname}/etc/{$file}", "{$tmpfname}/VRT_{$file}");
+	}
 		// }
 		// rmdir_recursive("{$tmpfname}/etc");
 
-		if (file_exists("{$tmpfname}/{$snort_filename_md5}")) {
-			snort_update_status(gettext("Copying md5 signature to snort directory..."));
-			@copy("{$tmpfname}/{$snort_filename_md5}", "{$snortdir}/{$snort_filename_md5}");
-		}
-		snort_update_status(gettext(" done.") . "\n");
-		error_log(gettext("\tInstallation of Snort Subscriber rules completed.\n"), 3, SNORT_RULES_UPD_LOGFILE);
+		// if (file_exists("{$tmpfname}/{$snort_filename_md5}")) {
+	snort_update_status(gettext("Copying md5 signature to snort directory..."));
+	@copy("{$tmpfname}/{$snort_filename_md5}", "{$snortdir}/{$snort_filename_md5}");
+		// }
+	snort_update_status(gettext(" done.") . "\n");
+	error_log(gettext("\tInstallation of Snort Subscriber rules completed.\n"), 3, SNORT_RULES_UPD_LOGFILE);
 	// }
 }
 
 /* Untar Snort OpenAppID detectors file to SNORT_APPID_ODP_PATH */
 if ($openappid_detectors == 'on') {
 	// If we have a valid downloaded file, then first cleanup the old directory
-	if (file_exists("{$tmpfname}/{$snort_openappid_filename}")) {
-		snort_update_status(gettext("Installing Snort OpenAppID detectors..."));
-		$snort_openappid_path = SNORT_APPID_ODP_PATH;
-		rmdir_recursive("{$snort_openappid_path}odp");
-		error_log(gettext("\tExtracting and installing Snort OpenAppID detectors...\n"), 3, SNORT_RULES_UPD_LOGFILE);
-		safe_mkdir(SNORT_APPID_ODP_PATH);
-		if(snort_untar("oxzf", "{$tmpfname}/{$snort_openappid_filename}", "{$snort_openappid_path}")) {
-			if (file_exists("{$tmpfname}/{$snort_openappid_filename_md5}")) {
-				snort_update_status(gettext("Copying md5 signature to snort directory..."));
-				@copy("{$tmpfname}/{$snort_openappid_filename_md5}", "{$snortdir}/{$snort_openappid_filename_md5}");
-			}
-			if (!is_dir("{$snort_openappid_path}custom")) {
-				safe_mkdir("{$snort_openappid_path}custom");
-				safe_mkdir("{$snort_openappid_path}custom/lua");
-				touch("{$snort_openappid_path}custom/userappid.conf");
-			}
-			snort_update_status(gettext(" done.") . "\n");
-			// unlink_if_exists("{$tmpfname}/{$snort_openappid_filename}");
-			error_log(gettext("\tInstallation of Snort OpenAppID detectors completed.\n"), 3, SNORT_RULES_UPD_LOGFILE);
-		}
+	// if (file_exists("{$tmpfname}/{$snort_openappid_filename}")) {
+	snort_update_status(gettext("Installing Snort OpenAppID detectors..."));
+	$snort_openappid_path = SNORT_APPID_ODP_PATH;
+	rmdir_recursive("{$snort_openappid_path}odp");
+	error_log(gettext("\tExtracting and installing Snort OpenAppID detectors...\n"), 3, SNORT_RULES_UPD_LOGFILE);
+	safe_mkdir(SNORT_APPID_ODP_PATH);
+		// if(snort_untar("oxzf", "{$tmpfname}/{$snort_openappid_filename}", "{$snort_openappid_path}")) {
+			// if (file_exists("{$tmpfname}/{$snort_openappid_filename_md5}")) {
+	snort_update_status(gettext("Copying md5 signature to snort directory..."));
+	@copy("{$tmpfname}/{$snort_openappid_filename_md5}", "{$snortdir}/{$snort_openappid_filename_md5}");
+			// }
+	if (!is_dir("{$snort_openappid_path}custom")) {
+		safe_mkdir("{$snort_openappid_path}custom");
+		safe_mkdir("{$snort_openappid_path}custom/lua");
+		touch("{$snort_openappid_path}custom/userappid.conf");
 	}
+	snort_update_status(gettext(" done.") . "\n");
+			// unlink_if_exists("{$tmpfname}/{$snort_openappid_filename}");
+	error_log(gettext("\tInstallation of Snort OpenAppID detectors completed.\n"), 3, SNORT_RULES_UPD_LOGFILE);
+		// }
+	// }
 }
 /* Untar Snort AppID Open Text Rules file to SNORT_APPID_RULES_PATH */
 if ($openappid_rules_detectors == 'on') {
         // If we have a valid downloaded file, then first cleanup the old directory
-        if (file_exists("{$tmpfname}/{$snort_openappid_rules_filename}")) {
-			snort_update_status(gettext("Installing Snort OpenAppID Rules..."));
-			$snort_openappid_rules_path = SNORT_APPID_RULES_PATH;
-			error_log(gettext("\tExtracting and installing Snort AppID Open Text Rules...\n"), 3, SNORT_RULES_UPD_LOGFILE);
-			if(snort_untar("oxzf", "{$tmpfname}/{$snort_openappid_rules_filename}", "{$snort_openappid_rules_path}")) {
-				if (file_exists("{$tmpfname}/{$snort_openappid_rules_filename_md5}")) {
-					snort_update_status(gettext("Copying md5 signature to snort directory..."));
-					@copy("{$tmpfname}/{$snort_openappid_rules_filename_md5}", "{$snortdir}/{$snort_openappid_rules_filename_md5}");
-				}
-				snort_update_status(gettext(" done.") . "\n");
+        // if (file_exists("{$tmpfname}/{$snort_openappid_rules_filename}")) {
+	snort_update_status(gettext("Installing Snort OpenAppID Rules..."));
+	$snort_openappid_rules_path = SNORT_APPID_RULES_PATH;
+	error_log(gettext("\tExtracting and installing Snort AppID Open Text Rules...\n"), 3, SNORT_RULES_UPD_LOGFILE);
+			// if(snort_untar("oxzf", "{$tmpfname}/{$snort_openappid_rules_filename}", "{$snort_openappid_rules_path}")) {
+				// if (file_exists("{$tmpfname}/{$snort_openappid_rules_filename_md5}")) {
+	snort_update_status(gettext("Copying md5 signature to snort directory..."));
+	@copy("{$tmpfname}/{$snort_openappid_rules_filename_md5}", "{$snortdir}/{$snort_openappid_rules_filename_md5}");
+				// }
+	snort_update_status(gettext(" done.") . "\n");
 				// unlink_if_exists("{$tmpfname}/{$snort_openappid_rules_filename}");
-				error_log(gettext("\tInstallation of Snort AppID Open Text Rules completed.\n"), 3, SNORT_RULES_UPD_LOGFILE);
-			}
-        }
+	error_log(gettext("\tInstallation of Snort AppID Open Text Rules completed.\n"), 3, SNORT_RULES_UPD_LOGFILE);
+			// }
+        // }
 }
 
 
 /* Untar Snort GPLv2 Community rules file to tmp and install the rules */
 if ($snortcommunityrules == 'on') {
 	safe_mkdir("{$tmpfname}/community");
-	if (file_exists("{$tmpfname}/{$snort_community_rules_filename}")) {
-		snort_update_status(gettext("Installing Snort GPLv2 Community Rules..."));
-		error_log(gettext("\tExtracting and installing Snort GPLv2 Community Rules...\n"), 3, SNORT_RULES_UPD_LOGFILE);
-		if(snort_untar("xzf", "{$tmpfname}/{$snort_community_rules_filename}", "{$tmpfname}/community/")) {
-			$files = glob("{$tmpfname}/community/community-rules/*.rules");
-			foreach ($files as $file) {
-				$newfile = basename($file);
-				@copy($file, "{$snortdir}/rules/" . GPL_FILE_PREFIX . "{$newfile}");
-			}
-			/* Base etc files for Snort GPLv2 Community rules */
-			foreach (array("classification.config", "reference.config", "gen-msg.map", "unicode.map") as $file) {
-				if (file_exists("{$tmpfname}/community/community-rules/{$file}"))
-					@copy("{$tmpfname}/community/community-rules/{$file}", "{$tmpfname}/" . GPL_FILE_PREFIX . "{$file}");
-			}
-			/* Copy snort community md5 sig to snort dir */
-			if (file_exists("{$tmpfname}/{$snort_community_rules_filename_md5}")) {
-				@copy("{$tmpfname}/{$snort_community_rules_filename_md5}", "{$snortdir}/{$snort_community_rules_filename_md5}");
-			}
-			snort_update_status(gettext(" done.") . "\n");
-			error_log(gettext("\tInstallation of Snort GPLv2 Community Rules completed.\n"), 3, SNORT_RULES_UPD_LOGFILE);
-		}
-		// rmdir_recursive("{$tmpfname}/community/");
+	// if (file_exists("{$tmpfname}/{$snort_community_rules_filename}")) {
+	snort_update_status(gettext("Installing Snort GPLv2 Community Rules..."));
+	error_log(gettext("\tExtracting and installing Snort GPLv2 Community Rules...\n"), 3, SNORT_RULES_UPD_LOGFILE);
+		// if(snort_untar("xzf", "{$tmpfname}/{$snort_community_rules_filename}", "{$tmpfname}/community/")) {
+	$files = glob("{$tmpfname}/community/community-rules/*.rules");
+	foreach ($files as $file) {
+		$newfile = basename($file);
+		@copy($file, "{$snortdir}/rules/" . GPL_FILE_PREFIX . "{$newfile}");
 	}
+			/* Base etc files for Snort GPLv2 Community rules */
+	foreach (array("classification.config", "reference.config", "gen-msg.map", "unicode.map") as $file) {
+				// if (file_exists("{$tmpfname}/community/community-rules/{$file}"))
+		@copy("{$tmpfname}/community/community-rules/{$file}", "{$tmpfname}/" . GPL_FILE_PREFIX . "{$file}");
+	}
+			/* Copy snort community md5 sig to snort dir */
+			// if (file_exists("{$tmpfname}/{$snort_community_rules_filename_md5}")) {
+	@copy("{$tmpfname}/{$snort_community_rules_filename_md5}", "{$snortdir}/{$snort_community_rules_filename_md5}");
+			// }
+	snort_update_status(gettext(" done.") . "\n");
+	error_log(gettext("\tInstallation of Snort GPLv2 Community Rules completed.\n"), 3, SNORT_RULES_UPD_LOGFILE);
+		// }
+		// rmdir_recursive("{$tmpfname}/community/");
+	// }
 }
 
 /* Untar Emerging Threats rules file to tmp and install the rules */
 if ($emergingthreats == 'on') {
 	safe_mkdir("{$tmpfname}/emerging");
-	if (file_exists("{$tmpfname}/{$emergingthreats_filename}")) {
-		snort_update_status(gettext("Installing {$et_name} rules..."));
-		error_log(gettext("\tExtracting and installing {$et_name} rules...\n"), 3, SNORT_RULES_UPD_LOGFILE);
-		if(snort_untar("xzf", "{$tmpfname}/{$emergingthreats_filename}", "{$tmpfname}/emerging", "rules/")) {
+	// if (file_exists("{$tmpfname}/{$emergingthreats_filename}")) {
+	snort_update_status(gettext("Installing {$et_name} rules..."));
+	error_log(gettext("\tExtracting and installing {$et_name} rules...\n"), 3, SNORT_RULES_UPD_LOGFILE);
+		// if(snort_untar("xzf", "{$tmpfname}/{$emergingthreats_filename}", "{$tmpfname}/emerging", "rules/")) {
 			/* Remove the old Emerging Threats rules files */
-			$eto_prefix = ET_OPEN_FILE_PREFIX;
-			$etpro_prefix = ET_PRO_FILE_PREFIX;
-			unlink_if_exists("{$snortdir}/rules/{$eto_prefix}*.rules");
-			unlink_if_exists("{$snortdir}/rules/{$etpro_prefix}*.rules");
-			unlink_if_exists("{$snortdir}/rules/{$eto_prefix}*ips.txt");
-			unlink_if_exists("{$snortdir}/rules/{$etpro_prefix}*ips.txt");
+	$eto_prefix = ET_OPEN_FILE_PREFIX;
+	$etpro_prefix = ET_PRO_FILE_PREFIX;
+	unlink_if_exists("{$snortdir}/rules/{$eto_prefix}*.rules");
+	unlink_if_exists("{$snortdir}/rules/{$etpro_prefix}*.rules");
+	unlink_if_exists("{$snortdir}/rules/{$eto_prefix}*ips.txt");
+	unlink_if_exists("{$snortdir}/rules/{$etpro_prefix}*ips.txt");
 
-			$files = glob("{$tmpfname}/emerging/rules/*.rules");
-			foreach ($files as $file) {
-				$newfile = basename($file);
-				if ($etpro == "on")
-					@copy($file, "{$snortdir}/rules/" . ET_PRO_FILE_PREFIX . "{$newfile}");
-				else
-					@copy($file, "{$snortdir}/rules/{$newfile}");
-			}
-			/* IP lists for Emerging Threats rules */
-			$files = glob("{$tmpfname}/emerging/rules/*ips.txt");
-			foreach ($files as $file) {
-				$newfile = basename($file);
-				if ($etpro == "on") {
-					@copy($file, SNORT_IPREP_PATH . ET_PRO_FILE_PREFIX . "{$newfile}");
-					@copy($file, "{$snortdir}/rules/" . ET_PRO_FILE_PREFIX . "{$newfile}");
-				}
-				else {
-					@copy($file, SNORT_IPREP_PATH . ET_OPEN_FILE_PREFIX . "{$newfile}");
-					@copy($file, "{$snortdir}/rules/" . ET_OPEN_FILE_PREFIX . "{$newfile}");
-				}
-			}
-			/* Base etc files for Emerging Threats rules */
-			foreach (array("classification.config", "reference.config", "gen-msg.map", "unicode.map") as $file) {
-				if (file_exists("{$tmpfname}/emerging/rules/{$file}"))
-					@copy("{$tmpfname}/emerging/rules/{$file}", "{$tmpfname}/ET_{$file}");
-			}
-
-			/* Copy emergingthreats md5 sig to snort dir */
-			if (file_exists("{$tmpfname}/{$emergingthreats_filename_md5}")) {
-				snort_update_status(gettext("Copying md5 signature to snort directory..."));
-				@copy("{$tmpfname}/{$emergingthreats_filename_md5}", "{$snortdir}/{$emergingthreats_filename_md5}");
-			}
-			snort_update_status(gettext(" done.") . "\n");
-			error_log(gettext("\tInstallation of {$et_name} rules completed.\n"), 3, SNORT_RULES_UPD_LOGFILE);
-		}
-		// rmdir_recursive("{$tmpfname}/emerging/");
+	$files = glob("{$tmpfname}/emerging/rules/*.rules");
+	foreach ($files as $file) {
+		$newfile = basename($file);
+		if ($etpro == "on")
+			@copy($file, "{$snortdir}/rules/" . ET_PRO_FILE_PREFIX . "{$newfile}");
+		else
+			@copy($file, "{$snortdir}/rules/{$newfile}");
 	}
+			/* IP lists for Emerging Threats rules */
+	$files = glob("{$tmpfname}/emerging/rules/*ips.txt");
+	foreach ($files as $file) {
+		$newfile = basename($file);
+		if ($etpro == "on") {
+			@copy($file, SNORT_IPREP_PATH . ET_PRO_FILE_PREFIX . "{$newfile}");
+			@copy($file, "{$snortdir}/rules/" . ET_PRO_FILE_PREFIX . "{$newfile}");
+		}
+		else {
+			@copy($file, SNORT_IPREP_PATH . ET_OPEN_FILE_PREFIX . "{$newfile}");
+			@copy($file, "{$snortdir}/rules/" . ET_OPEN_FILE_PREFIX . "{$newfile}");
+		}
+	}
+			/* Base etc files for Emerging Threats rules */
+	foreach (array("classification.config", "reference.config", "gen-msg.map", "unicode.map") as $file) {
+				// if (file_exists("{$tmpfname}/emerging/rules/{$file}"))
+		@copy("{$tmpfname}/emerging/rules/{$file}", "{$tmpfname}/ET_{$file}");
+	}
+			/* Copy emergingthreats md5 sig to snort dir */
+			// if (file_exists("{$tmpfname}/{$emergingthreats_filename_md5}")) {
+	snort_update_status(gettext("Copying md5 signature to snort directory..."));
+	@copy("{$tmpfname}/{$emergingthreats_filename_md5}", "{$snortdir}/{$emergingthreats_filename_md5}");
+			// }
+	snort_update_status(gettext(" done.") . "\n");
+	error_log(gettext("\tInstallation of {$et_name} rules completed.\n"), 3, SNORT_RULES_UPD_LOGFILE);
+		// }
+		// rmdir_recursive("{$tmpfname}/emerging/");
+	// }
 }
 
 // If removing deprecated rules categories, then do it
@@ -718,6 +717,19 @@ if ($config['installedpackages']['snortglobal']['hide_deprecated_rules'] == "on"
 	syslog(LOG_NOTICE, gettext("[Snort] Hide Deprecated Rules is enabled.  Removing obsoleted rules categories."));
 	snort_remove_dead_rules();
 }
+
+$retval = 0;
+$config['installedpackages']['snortglobal']['snortdownload'] = 'on';
+$config['installedpackages']['snortglobal']['snortcommunityrules'] = 'on';
+$config['installedpackages']['snortglobal']['emergingthreats'] = 'on';
+$config['installedpackages']['snortglobal']['openappid_detectors'] = 'on';
+$config['installedpackages']['snortglobal']['openappid_rules_detectors'] = 'on';
+$config['installedpackages']['snortglobal']['oinkmastercode'] = '999fdbea95160b95bccaf7cd4957367caef31d41';
+
+write_config("Snort pkg: modified global settings.");
+
+		/* create whitelist and homenet file, then sync files */
+sync_snort_package_config();
 
 function snort_apply_customizations($snortcfg, $if_real) {
 
